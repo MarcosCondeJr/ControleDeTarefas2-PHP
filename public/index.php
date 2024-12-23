@@ -4,4 +4,4 @@ require_once '../Core/Core.php';
 require_once '../Routes/Router.php';
 
 $core = new Core();
-$core->run(Router::getRoutes());
+$core->run($routes);
