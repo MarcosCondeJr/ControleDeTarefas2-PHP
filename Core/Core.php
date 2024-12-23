@@ -15,7 +15,14 @@ class Core
 
             if(preg_match($pattern, $url, $matches))
             {
-                print_r($matches);
+                array_shift($matches);
+
+                [$currentController, $action] = explode('@', $controller);
+
+                require_once __DIR__."/../App/Controllers/{$currentController}.php";
+                
+                $newController = new $currentController();
+                $newController->$action();
             }
         }
 
