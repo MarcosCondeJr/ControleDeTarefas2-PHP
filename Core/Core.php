@@ -10,6 +10,7 @@ class Core
 
         isset($_GET['url']) ? $url .= $_GET['url'] : '';
 
+        //Remove a outra barra passada na url
         ($url != '/') ? $url = rtrim($url, '/') : $url;
 
         $routerFound = false;
@@ -25,9 +26,9 @@ class Core
                 $routerFound = true;
 
                 [$currentController, $action] = explode('@', $controller);
-
                 $qualifiedController = "App\\Controllers\\{$currentController}";
                 
+                //Estancia o controller
                 $newController = new $qualifiedController();
                 $newController->$action($matches);
             }
@@ -38,6 +39,5 @@ class Core
             $controller = new NotFoundController();
             $controller->index();
         }
-
     }
 }
