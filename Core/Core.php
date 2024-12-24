@@ -19,9 +19,9 @@ class Core
 
                 [$currentController, $action] = explode('@', $controller);
 
-                require_once __DIR__."/../App/Controllers/{$currentController}.php";
+                $qualifiedController = "App\\Controllers\\{$currentController}";
                 
-                $newController = new $currentController();
+                $newController = new $qualifiedController();
                 $newController->$action();
             }
         }
