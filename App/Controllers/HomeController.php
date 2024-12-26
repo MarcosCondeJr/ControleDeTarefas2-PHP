@@ -7,6 +7,6 @@ class HomeController
 {
     public function index()
     {
-        RenderView::loadView('HomePage', []);
+        RenderView::loadView('Home','HomePage', []);
     }
 }
