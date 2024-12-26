@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-class User 
+class UserController
 {
-    public function show($id)
+    public function show()
     {
         echo "oi";
     }

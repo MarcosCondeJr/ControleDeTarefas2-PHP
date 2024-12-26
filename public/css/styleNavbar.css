@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Montserrat", serif;
+}
+
+#navbar-brand:hover {
+    color: rgb(213, 212, 212);
+}
+
+.nav-link {
+    font-size: 1.7rem;
+}
+
+#navbar-brand {
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+#person {
+    font-size: 1.5rem;
+}
