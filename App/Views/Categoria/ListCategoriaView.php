@@ -11,7 +11,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mt-4">
             <h1>Lista de Categorias</h1>
-            <button class="btn btn-primary ms-auto" onclick="window.location.href='<?= BASE_URL ?>/categoria/cadastro-categoria'">Cadastrar</button>
+            <button class="btn btn-primary ms-auto" onclick="window.location.href='<?= BASE_URL ?>/cadastro-categoria'">Cadastrar</button>
         </div>
         <div class="mt-3">
             <table class="table table-striped border">

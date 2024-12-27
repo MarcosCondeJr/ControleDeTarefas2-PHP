@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
         <div class="container-fluid">
-            <a href="<?= BASE_URL ?>/" class="navbar-brand d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
+            <a href="<?= BASE_URL ?>/" class="navbar-brand fs-4 d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
             <button class="navbar-toggler" type="button" 
                 data-bs-toggle="collapse" 
                 data-bs-target="#menuNavbar">
@@ -27,7 +27,7 @@
                     <div class="dropdown">
                         <a href="#" class="nav-link dropdown-toggle"
                                 data-bs-toggle="dropdown">
-                            <i class="bi bi-person" id="person"></i>
+                            <i class="bi bi-person fs-4"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
