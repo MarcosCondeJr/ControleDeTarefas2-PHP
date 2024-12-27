@@ -51,7 +51,7 @@ CREATE TABLE tarefas (
 	id_usuario INT NOT NULL,
 	id_categoria INT NOT NULL,
 	id_situacao INT NOT NULL,
-	ds_tarefa VARCHAR(80) NOT NULL,
+	ds_tarefa VARCHAR(80),
 
 	CONSTRAINT pk_tarefas PRIMARY KEY (id_tarefa),
 

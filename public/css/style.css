@@ -3,3 +3,8 @@
 *{
     font-family: "Montserrat", serif;
 }
+
+.form-label.required::after {
+    content: " *";
+    color: red;
+}
