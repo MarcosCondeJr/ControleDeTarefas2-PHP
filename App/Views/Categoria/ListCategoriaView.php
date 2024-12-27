@@ -9,9 +9,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mt-4">
+        <div class="d-flex justify-content-between align-items-center mt-5">
             <h1>Lista de Categorias</h1>
-            <button class="btn btn-primary ms-auto" onclick="window.location.href='<?= BASE_URL ?>/cadastro-categoria'">Cadastrar</button>
+           
+        </div>
+        <div class="form-group d-flex mt-5">
+            <input type="text" class="form-control w-25" placeholder="Consulta">
+            <button type="submit" class="btn btn-primary">
+                Pesquisar
+                <i class="bi bi-search"></i>
+            </button>
+            <button class="btn btn-success ms-2" onclick="window.location.href='<?= BASE_URL ?>/cadastro-categoria'">
+                Cadastrar
+                <i class="bi bi-plus-circle"></i>
+            </button>
         </div>
         <div class="mt-3">
             <table class="table table-striped border">
@@ -29,8 +40,14 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <a href="#" class="btn btn-warning">Editar</a>
-                            <a href="#" class="btn btn-danger">Deletar</a>
+                            <a href="#" class="btn btn-warning">
+                                <i class="bi bi-pencil-square"></i>
+                                Editar
+                            </a>
+                            <a href="#" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                                Deletar
+                            </a>
                          </td>
                     </tr>
                 </tbody>
