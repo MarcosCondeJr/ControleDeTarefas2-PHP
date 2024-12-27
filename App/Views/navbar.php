@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
         <div class="container-fluid">
-            <a href="" class="navbar-brand d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
+            <a href="<?= BASE_URL ?>/" class="navbar-brand d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
             <button class="navbar-toggler" type="button" 
                 data-bs-toggle="collapse" 
                 data-bs-target="#menuNavbar">
@@ -21,7 +21,7 @@
                 <div class="navbar-nav">
                     <a href="#" class="nav-link">Tarefas</a>
                     <a href="#" class="nav-link">Usuários</a>
-                    <a href="#" class="nav-link">Categorias</a>
+                    <a href="<?= BASE_URL ?>/cadastro-categoria" class="nav-link">Categorias</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <div class="dropdown">
