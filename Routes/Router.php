@@ -2,5 +2,5 @@
 
 $routes = [
     '/' => 'HomeController@index',
-    '/users' => 'UserController@show'
+    '/cadastro-categoria' => 'CategoriaController@createView'
 ];
