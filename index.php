@@ -2,6 +2,7 @@
 require_once 'vendor/autoload.php';
 require_once 'Core/Core.php';
 require_once 'Routes/Router.php';
+require_once 'environment.php';
 
 spl_autoload_register(function($file) {
     if (file_exists(__DIR__."/App/Utils/$file.php")) {

@@ -8,6 +8,8 @@
     <title>Cadastro Categoria</title>
 </head>
 <body>
-    <h1>Cadastro Categoria</h1>
+    <div class="container">
+        <h1>Cadastro Categoria</h1>
+    </div>
 </body>
 </html>
