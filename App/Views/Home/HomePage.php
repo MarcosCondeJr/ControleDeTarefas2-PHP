@@ -12,9 +12,10 @@
     <title>Home</title>
 </head>
 <body>
-    <div class="titulo">
-        <h3>Olá Sr Marcos, seja Bem Vindo!</h3>
-        <p>teste</p>
+    <div class="container">
+        <div class="titulo">
+            <h3>Olá Sr Marcos, seja Bem Vindo!</h3>
+        </div>
     </div>
 </body>
 </html>
