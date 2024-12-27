@@ -21,7 +21,7 @@
                 <div class="navbar-nav">
                     <a href="#" class="nav-link">Tarefas</a>
                     <a href="#" class="nav-link">Usuários</a>
-                    <a href="#" class="nav-link">Categorias</a>
+                    <a href="<?= BASE_URL ?>/cadastro-categoria" class="nav-link">Categorias</a>
                 </div>
                 <div class="navbar-nav ms-auto">
                     <div class="dropdown">
