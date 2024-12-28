@@ -7,7 +7,7 @@ class Connection
 {
     private $host     = 'localhost';
     private $port     = '5432';
-    private $dbname   = 'controle-de-tarefas';
+    private $dbname   = 'controle_tarefas';
     private $password = '1234';
     private $user     = 'postgres';
     private $conn;

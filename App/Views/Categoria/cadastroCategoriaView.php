@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col mb-4">
                     <label for="ds_categoria" class="form-label">Descrição</label>
-                    <textarea name="" id="" class="form-control" name="ds_categoria"></textarea>
+                    <textarea id="" class="form-control" name="ds_categoria"></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
