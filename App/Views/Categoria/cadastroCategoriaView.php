@@ -10,12 +10,12 @@
 </head>
 <body>
     <div class="container">
-        <form action="">
+        <form action="<?= BASE_URL ?>/create-categoria" method="POST">
             <h1 class="mt-5 mb-3">Cadastro de Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" readonly>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria">
                 </div>
                 <div class="col mb-3">
                     <label for="nomeCategoria" class="form-label required">Nome Categoria</label>
