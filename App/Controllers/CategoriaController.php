@@ -25,6 +25,7 @@ class CategoriaController
 
     public function createView()
     {
+        //Gera um código automaticamente
         $categoria = $this->categoria->getByCodigo();
         if(!empty($categoria))
         {
@@ -37,6 +38,7 @@ class CategoriaController
         RenderView::loadView('Categoria', 'cadastroCategoriaView', ['codigo' => $codigo]);
     }
 
+    //Salva a categoria no Banco de dados
     public function create()
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST')
