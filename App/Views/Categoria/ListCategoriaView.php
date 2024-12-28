@@ -46,9 +46,9 @@
                                         <i class="bi bi-pencil-square"></i>
                                         Editar
                                     </a>
-                                    <form action="<?= BASE_URL ?>/delete-categoria" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar essa categoria?');" style="display:inline;">
+                                    <form action="<?= BASE_URL ?>/delete-categoria" method="POST" id="deleteForm" style = "display: inline-flex">
                                         <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-danger deleteButton">
                                             <i class="bi bi-trash"></i>
                                             Deletar
                                         </button>
@@ -65,5 +65,37 @@
             </table>
         </div>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+
+    <script>
+        const deleteButtons = document.querySelectorAll('.deleteButton');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                const form = this.closest('form');
+                const formAction = form.action;
+
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    } else {
+                        
+                    }
+                });
+            });
+        });
+</script>
 </body>
 </html>
