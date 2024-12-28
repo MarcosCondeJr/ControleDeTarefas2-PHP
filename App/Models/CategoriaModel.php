@@ -59,7 +59,7 @@ class CategoriaModel
         $sql = 
             "INSERT INTO categoria (cd_categoria, nm_categoria, ds_categoria)
              VALUES (:cd_categoria, :nm_categoria, :ds_categoria)";
-             
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':cd_categoria', $this->getCdCategoria());
         $stmt->bindValue(':nm_categoria', $this->getNmCategoria());
@@ -67,4 +67,26 @@ class CategoriaModel
 
         $stmt->execute();
     }
+
+    /**
+     * Função Responsável por Buscar as Categorias
+     * @author: Marcos Conde
+     * @created: 27/12/2024
+     */
+    public function getAll()
+    {
+        $stmt = $this->db->query("SELECT * FROM categoria");
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Função Responsável por Buscar o ultimo codigo
+     * @author: Marcos Conde
+     * @created: 27/12/2024
+     */
+    public function getByCodigo()
+    {
+        $stmt = $this->db->query("SELECT * FROM categoria ORDER BY cd_categoria DESC LIMIT 1");
+        return $stmt->fetch();
+    }    
 }

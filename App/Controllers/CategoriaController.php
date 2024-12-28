@@ -19,12 +19,22 @@ class CategoriaController
 
     public function index()
     {
-        RenderView::loadView('Categoria', 'ListCategoriaView', []);
+        $categorias = $this->categoria->getAll();
+        RenderView::loadView('Categoria', 'ListCategoriaView', ['categorias' => $categorias]);
     }
 
     public function createView()
     {
-        RenderView::loadView('Categoria', 'cadastroCategoriaView', []);
+        $categoria = $this->categoria->getByCodigo();
+        if(!empty($categoria))
+        {
+            $codigo = $categoria['cd_categoria'] + 1;
+        }
+        else
+        {
+            $codigo = 1;
+        }
+        RenderView::loadView('Categoria', 'cadastroCategoriaView', ['codigo' => $codigo]);
     }
 
     public function create()

@@ -35,21 +35,29 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a href="#" class="btn btn-warning">
-                                <i class="bi bi-pencil-square"></i>
-                                Editar
-                            </a>
-                            <a href="#" class="btn btn-danger">
-                                <i class="bi bi-trash"></i>
-                                Deletar
-                            </a>
-                         </td>
-                    </tr>
+                    <?php if (!empty($categorias)): ?>
+                        <?php foreach($categorias as $cat): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($cat['cd_categoria']) ?></td>
+                                <td><?= htmlspecialchars($cat['nm_categoria']) ?></td>
+                                <td><?= htmlspecialchars($cat['ds_categoria']) ?></td>
+                                <td>
+                                    <a href="#" class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                        Editar
+                                    </a>
+                                    <a href="#" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                        Deletar
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="3">Nenhuma categoria encontrada.</td>
+                        </tr>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
