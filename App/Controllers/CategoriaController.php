@@ -51,8 +51,19 @@ class CategoriaController
             $nmCategoria = $_POST['nm_categoria'] ?? null;
             $dsCategoria = $_POST['ds_categoria'] ?? null;
 
+            $categoria = $this->categoria->getAll();
+
             try
             {
+                //Verifica se não existe uma categoria com o mesmo código
+                foreach($categoria as $cat)
+                {
+                    if($cat['cd_categoria'] == $cdCategoria)
+                    {
+                        throw new Exception("Já existe uma categoria com o código $cdCategoria");
+                    }
+                }
+                    
                 if(empty(trim($nmCategoria)))
                 {
                     throw new Exception('O Campo Nome é obrigatório!');
