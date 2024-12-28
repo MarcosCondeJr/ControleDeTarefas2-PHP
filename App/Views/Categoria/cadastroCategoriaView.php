@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="<?= BASE_URL ?>/create-categoria" method="POST" id="cad-categoria-form">
+        <form action="<?= BASE_URL ?>/create-categoria" method="POST">
             <h1 class="mt-5 mb-3">Cadastro de Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
