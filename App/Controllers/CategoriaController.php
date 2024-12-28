@@ -60,7 +60,7 @@ class CategoriaController
                 $this->categoria->setDsCategoria($dsCategoria);
                 $this->categoria->create();
 
-                // header("Location: " . BASE_URL . "/categoria");
+                header("Location: " . BASE_URL . "/categoria");
                 exit();
             }
             catch (PDOException $e)
@@ -69,5 +69,24 @@ class CategoriaController
             }
         }
         RenderView::loadView('Categoria', 'cadastroCategoriaView', []);
+    }
+
+    public function delete()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $id = $_POST['id_categoria'];
+
+            try
+            {
+                $this->categoria->delete($id);
+                header("Location: " . BASE_URL . "/categoria");
+                exit();
+            }
+            catch(PDOException $e)
+            {
+                throw new Exception('Erro ao deletar a categoria: ' . $e->getMessage());
+            }
+        }
     }
 }

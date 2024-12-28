@@ -46,10 +46,13 @@
                                         <i class="bi bi-pencil-square"></i>
                                         Editar
                                     </a>
-                                    <a href="#" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                        Deletar
-                                    </a>
+                                    <form action="<?= BASE_URL ?>/delete-categoria" method="POST" onsubmit="return confirm('Tem certeza que deseja deletar essa categoria?');" style="display:inline;">
+                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                            Deletar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -89,4 +89,10 @@ class CategoriaModel
         $stmt = $this->db->query("SELECT * FROM categoria ORDER BY cd_categoria DESC LIMIT 1");
         return $stmt->fetch();
     }    
+
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM categoria WHERE id_categoria = :id_categoria");
+        return $stmt->execute([$id]);
+    }
 }
