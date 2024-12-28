@@ -43,6 +43,8 @@ class CategoriaController
     public function create()
     {
         $error = null;
+        $sucesso = false;
+
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $cdCategoria = $_POST['cd_categoria'] ?? null;
@@ -63,7 +65,8 @@ class CategoriaController
                 //Cria a categoria
                 $this->categoria->create();
 
-                header("Location: " . BASE_URL . "/categoria");
+                $sucesso = true;
+                RenderView::loadView('Categoria', 'cadastroCategoriaView', ['sucesso' => $sucesso]);
                 exit();
             }
             catch (Exception $e)

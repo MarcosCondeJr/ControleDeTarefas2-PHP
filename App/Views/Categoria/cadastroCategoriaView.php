@@ -34,6 +34,7 @@
 
     <script src="public/js/sweetAlert2.js"></script>
 
+    <!-- Alert de Erro -->
     <?php if (isset($error)): ?>
         <script>
             window.onload = function() {
@@ -42,6 +43,24 @@
                     title: 'Atenção',
                     text: '<?= $error ?>',
                     confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
+
+    <!-- Alert de Sucesso -->
+    <?php if (isset($sucesso)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                title: "Sucesso!",
+                text: "Categoria Cadastrada!",
+                icon: "success",
+                confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= BASE_URL ?>/categoria';
+                    }
                 });
             }
         </script>
