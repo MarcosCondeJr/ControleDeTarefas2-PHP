@@ -80,7 +80,19 @@ class CategoriaModel
     }
 
     /**
-     * Função Responsável por Buscar o ultimo codigo
+     * Função Responsável por Buscar a Categoria para a edição
+     * @author: Marcos Conde
+     * @created: 28/12/2024
+     */
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM categoria WHERE id_categoria = :id_categoria");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    /**
+     * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
      * @author: Marcos Conde
      * @created: 27/12/2024
      */

@@ -42,10 +42,13 @@
                                 <td><?= htmlspecialchars($cat['nm_categoria']) ?></td>
                                 <td><?= htmlspecialchars($cat['ds_categoria']) ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                        Editar
-                                    </a>
+                                    <form action="<?= BASE_URL ?>/editar-categoria" method="GET" style = "display: inline-flex">
+                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                            Editar
+                                        </button>
+                                    </form>
                                     <form action="<?= BASE_URL ?>/delete-categoria" method="POST" id="deleteForm" style = "display: inline-flex">
                                         <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
                                         <button type="submit" class="btn btn-danger deleteButton">

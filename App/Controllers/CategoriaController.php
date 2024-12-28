@@ -106,4 +106,14 @@ class CategoriaController
             }
         }
     }
+
+    public function updateView()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $idCategoria = $_GET['id_categoria'];
+            $categoria = $this->categoria->getById($idCategoria);
+        }
+        RenderView::loadView('Categoria', 'EditarCategoriaView', ['categoria' => $categoria]);
+    }
 }
