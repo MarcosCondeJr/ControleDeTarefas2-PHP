@@ -61,11 +61,11 @@ class CategoriaModel
              VALUES (:cd_categoria, :nm_categoria, :ds_categoria)";
 
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':cd_categoria', $this->getCdCategoria());
-        $stmt->bindValue(':nm_categoria', $this->getNmCategoria());
-        $stmt->bindValue(':ds_categoria', $this->getDsCategoria());
-
-        $stmt->execute();
+        $stmt->bindValue(":cd_categoria", $this->getCdCategoria());
+        $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
+        $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
+        
+        // $stmt->execute();
     }
 
     /**

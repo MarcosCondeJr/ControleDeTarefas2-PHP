@@ -4,6 +4,7 @@ namespace App\Controllers;
 use App\Utils\RenderView;
 use App\Config\Connection;
 use App\Models\CategoriaModel;
+use Exception;
 
 class CategoriaController
 {
@@ -49,28 +50,22 @@ class CategoriaController
 
             try
             {
-                if(empty($nmCategoria))
+                if(empty(trim($nmCategoria)))
                 {
-                    $mensagem = ['status' => false, 'msg' => "O Campo Nome é obrigatório!"];
+                    throw new Exception('O Campo Nome é obrigatório!');
                 }
-
+                var_dump($nmCategoria);
                 $this->categoria->setCdCategoria($cdCategoria);
                 $this->categoria->setNmCategoria($nmCategoria);
                 $this->categoria->setDsCategoria($dsCategoria);
-                $sucesso = $this->categoria->create();
-                
-                if($sucesso)
-                {
-                    $mensagem = ['status' => true, 'msg' => "Registro Cadastrado com sucesso!"];
-                }
+                $this->categoria->create();
 
-                echo json_encode($mensagem);
-                header("Location: " . BASE_URL . "/categoria");
+                // header("Location: " . BASE_URL . "/categoria");
                 exit();
             }
-            catch (Exception $e)
+            catch (PDOException $e)
             {
-                echo $e->getMessage();
+                throw new Exception('Erro ao salvar a categoria: ' . $e->getMessage());
             }
         }
         RenderView::loadView('Categoria', 'cadastroCategoriaView', []);
