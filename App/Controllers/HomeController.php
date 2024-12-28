@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Controllers;
+use App\Utils\RenderView;
 
 class HomeController
 {
     public function index()
     {
-        echo "Olá, bem vindo a Home";
+        RenderView::loadView('Home','HomePage', []);
     }
 }
