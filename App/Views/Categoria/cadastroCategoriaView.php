@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="<?= BASE_URL ?>/create-categoria" method="POST">
+        <form action="<?= BASE_URL ?>/create-categoria" method="POST" id="cad-categoria-form">
             <h1 class="mt-5 mb-3">Cadastro de Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
@@ -28,8 +28,11 @@
                     <textarea name="" id="" class="form-control" name="ds_categoria"></textarea>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
         </form>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+    <script src="public/js/custom.js"></script>
 </body>
 </html>

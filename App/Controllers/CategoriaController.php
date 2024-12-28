@@ -51,12 +51,20 @@ class CategoriaController
             {
                 if(empty($nmCategoria))
                 {
-                    throw new Exception('O campo Nome é obrigatório!');
+                    $mensagem = ['status' => false, 'msg' => "O Campo Nome é obrigatório!"];
                 }
+
                 $this->categoria->setCdCategoria($cdCategoria);
                 $this->categoria->setNmCategoria($nmCategoria);
                 $this->categoria->setDsCategoria($dsCategoria);
-                $this->categoria->create();
+                $sucesso = $this->categoria->create();
+                
+                if($sucesso)
+                {
+                    $mensagem = ['status' => true, 'msg' => "Registro Cadastrado com sucesso!"];
+                }
+
+                echo json_encode($mensagem);
                 header("Location: " . BASE_URL . "/categoria");
                 exit();
             }

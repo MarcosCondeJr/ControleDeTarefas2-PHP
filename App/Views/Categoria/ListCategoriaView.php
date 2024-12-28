@@ -55,7 +55,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="3">Nenhuma categoria encontrada.</td>
+                            <td colspan="4">Nenhuma categoria encontrada.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
