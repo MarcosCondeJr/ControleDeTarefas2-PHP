@@ -15,17 +15,17 @@
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $codigo ?>" readonly>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>" readonly>
                 </div>
                 <div class="col mb-3">
                     <label for="nomeCategoria" class="form-label required">Nome Categoria</label>
-                    <input type="text" class="form-control" name="nm_categoria">
+                    <input type="text" class="form-control" name="nm_categoria" value="<?= $_POST['nm_categoria'] ?? '' ?>">
                 </div>
             </div>
             <div class="row">
                 <div class="col mb-4">
                     <label for="ds_categoria" class="form-label">Descrição</label>
-                    <textarea id="" class="form-control" name="ds_categoria"></textarea>
+                    <textarea id="" class="form-control" name="ds_categoria"><?= $_POST['ds_categoria'] ?? '' ?></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
@@ -33,6 +33,18 @@
     </div>
 
     <script src="public/js/sweetAlert2.js"></script>
-    <script src="public/js/custom.js"></script>
+
+    <?php if (isset($error)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atenção',
+                    text: '<?= $error ?>',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
 </body>
 </html>

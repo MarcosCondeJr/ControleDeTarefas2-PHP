@@ -65,7 +65,7 @@ class CategoriaModel
         $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
         $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
         
-        // $stmt->execute();
+        $stmt->execute();
     }
 
     /**

@@ -42,6 +42,7 @@ class CategoriaController
     //Salva a categoria no Banco de dados
     public function create()
     {
+        $error = null;
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $cdCategoria = $_POST['cd_categoria'] ?? null;
@@ -54,21 +55,23 @@ class CategoriaController
                 {
                     throw new Exception('O Campo Nome é obrigatório!');
                 }
-                var_dump($nmCategoria);
+
                 $this->categoria->setCdCategoria($cdCategoria);
                 $this->categoria->setNmCategoria($nmCategoria);
                 $this->categoria->setDsCategoria($dsCategoria);
+
+                //Cria a categoria
                 $this->categoria->create();
 
                 header("Location: " . BASE_URL . "/categoria");
                 exit();
             }
-            catch (PDOException $e)
+            catch (Exception $e)
             {
-                throw new Exception('Erro ao salvar a categoria: ' . $e->getMessage());
+                $error = $e->getMessage();
             }
         }
-        RenderView::loadView('Categoria', 'cadastroCategoriaView', []);
+        RenderView::loadView('Categoria', 'cadastroCategoriaView', ['error' => $error]);
     }
 
     public function delete()
