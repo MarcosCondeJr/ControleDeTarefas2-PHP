@@ -31,7 +31,6 @@ class CategoriaController
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            session_start();
             $cdCategoria = $_POST['cd_categoria'] ?? null;
             $nmCategoria = $_POST['nm_categoria'] ?? null;
             $dsCategoria = $_POST['ds_categoria'] ?? null;
@@ -46,13 +45,14 @@ class CategoriaController
                 $this->categoria->setNmCategoria($nmCategoria);
                 $this->categoria->setDsCategoria($dsCategoria);
                 $this->categoria->create();
-                session_destroy();
+                header("Location: " . BASE_URL . "/categoria");
+                exit();
             }
             catch (Exception $e)
             {
                 echo $e->getMessage();
             }
         }
-        RenderView::loadView('Categoria', 'ListCategoriaView', []);
+        RenderView::loadView('Categoria', 'cadastroCategoriaView', []);
     }
 }
