@@ -5,7 +5,7 @@ use App\Utils\RenderView;
 use App\Config\Connection;
 use Exception;
 
-class UserController 
+class UsuarioController 
 {
     private $user;
     private $db;
@@ -18,11 +18,11 @@ class UserController
 
     public function index()
     {
-        RenderView::loadView('User', 'ListUserView', []);
+        RenderView::loadView('Usuario', 'ListUsuarioView', []);
     }
 
     public function createView()
     {
-        RenderView::loadView('User', 'CadastroUserView', []);
+        RenderView::loadView('Usuario', 'CadastroUsuarioView', []);
     }
 }

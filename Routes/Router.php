@@ -12,6 +12,6 @@ $routes = [
     '/update-categoria' => 'CategoriaController@update',
 
     //Rotas do Usuario
-    '/users' => 'UserController@index',
-    '/cadastro-user' => 'UserController@createView'
+    '/usuarios' => 'UsuarioController@index',
+    '/cadastro-usuario' => 'UsuarioController@createView'
 ];
