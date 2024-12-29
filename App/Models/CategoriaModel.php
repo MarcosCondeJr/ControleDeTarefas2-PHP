@@ -86,7 +86,7 @@ class CategoriaModel
      */
     public function getAll()
     {
-        $stmt = $this->db->query("SELECT * FROM categoria");
+        $stmt = $this->db->query("SELECT * FROM categoria ORDER BY id_categoria");
         return $stmt->fetchAll();
     }
 
