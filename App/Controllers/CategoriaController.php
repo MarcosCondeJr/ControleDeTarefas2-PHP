@@ -116,4 +116,40 @@ class CategoriaController
         }
         RenderView::loadView('Categoria', 'EditarCategoriaView', ['categoria' => $categoria]);
     }
+
+    public function update()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $idCategoria = $_POST['id_categoria'] ?? null;
+            $cdCategoria = $_POST['cd_categoria'] ?? null;
+            $nmCategoria = $_POST['nm_categoria'] ?? null;
+            $dsCategoria = $_POST['ds_categoria'] ?? null;
+
+            try
+            {       
+                if(empty(trim($nmCategoria)))
+                {
+                    throw new Exception('O Campo Nome é obrigatório!');
+                }
+
+                $this->categoria->setIdCategoria($idCategoria);
+                $this->categoria->setCdCategoria($cdCategoria);
+                $this->categoria->setNmCategoria($nmCategoria);
+                $this->categoria->setDsCategoria($dsCategoria);
+
+                //Atualiza a categoria
+                $this->categoria->update();
+
+                $sucesso = true;
+                RenderView::loadView('Categoria', 'EditarCategoriaView', ['sucesso' => $sucesso]);
+                exit();
+            }
+            catch (Exception $e)
+            {
+                $error = $e->getMessage();
+            }
+        }
+        RenderView::loadView('Categoria', 'EditarCategoriaView', ['error' => $error]);
+    }
 }

@@ -10,24 +10,25 @@
 </head>
 <body>
     <div class="container">
-        <form action="<?= BASE_URL ?>/create-categoria" method="POST">
+        <form action="<?= BASE_URL ?>/update-categoria" method="POST">
             <h1 class="mt-5 mb-3">Editar Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $categoria['cd_categoria'] ?>" readonly>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $categoria['cd_categoria'] ?? $_POST['cd_categoria'] ?>" readonly>
                 </div>
                 <div class="col mb-3">
                     <label for="nomeCategoria" class="form-label required">Nome Categoria</label>
-                    <input type="text" class="form-control" name="nm_categoria" value="<?= $categoria['nm_categoria'] ?>">
+                    <input type="text" class="form-control" name="nm_categoria" value="<?= $categoria['nm_categoria'] ?? $_POST['nm_categoria']?>">
                 </div>
             </div>
             <div class="row">
                 <div class="col mb-4">
                     <label for="ds_categoria" class="form-label">Descrição</label>
-                    <textarea id="" class="form-control" name="ds_categoria"><?= $categoria['ds_categoria'] ?></textarea>
+                    <textarea id="" class="form-control" name="ds_categoria"><?= $categoria['ds_categoria'] ?? $_POST['ds_categoria'] ?></textarea>
                 </div>
             </div>
+            <input type="hidden" name="id_categoria" value="<?= $categoria['id_categoria'] ?>">
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
         </form>
     </div>
