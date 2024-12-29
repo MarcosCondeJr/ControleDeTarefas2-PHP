@@ -10,8 +10,12 @@
 </head>
 <body>
     <div class="container">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/categoria'">
+            <i class="bi bi-arrow-left-circle"></i>
+            Voltar
+        </button>
         <form action="<?= BASE_URL ?>/update-categoria" method="POST">
-            <h1 class="mt-5 mb-3">Editar Categoria</h1>
+            <h1 class="mt-3 mb-3">Editar Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>
@@ -29,6 +33,7 @@
                 </div>
             </div>
             <input type="hidden" name="id_categoria" value="<?= $categoria['id_categoria'] ?>">
+            <button type="button" class="btn btn-danger" id="cancelarButton">Cancelar</button>
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
         </form>
     </div>
@@ -68,5 +73,28 @@
             }
         </script>
     <?php endif; ?>
+
+    <!-- Alert de Cancelar edição -->
+    <script>
+        document.getElementById('cancelarButton').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Cancelar edição?',
+                text: "Todas as alterações não salvas serão perdidas.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#0d6efd',
+                cancelButtonText: 'Não',
+                cancelButtonColor: '#d33',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= BASE_URL ?>/categoria";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

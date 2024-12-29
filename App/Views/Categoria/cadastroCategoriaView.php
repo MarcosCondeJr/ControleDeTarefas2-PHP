@@ -10,8 +10,12 @@
 </head>
 <body>
     <div class="container">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/categoria'">
+            <i class="bi bi-arrow-left-circle"></i>
+            Voltar
+        </button>
         <form action="<?= BASE_URL ?>/create-categoria" method="POST">
-            <h1 class="mt-5 mb-3">Cadastro de Categoria</h1>
+            <h1 class="mt-3 mb-3">Cadastro de Categoria</h1>
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>

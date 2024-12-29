@@ -9,11 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mt-5">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/categoria'">
+            <i class="bi bi-arrow-left-circle"></i>
+            Voltar
+        </button>
+        <div class="d-flex justify-content-between align-items-center mt-3">
             <h1>Lista de Categorias</h1>
-           
         </div>
-        <div class="form-group d-flex mt-5">
+        <div class="form-group d-flex mt-4">
             <input type="text" class="form-control w-25" placeholder="Consulta">
             <button type="submit" class="btn btn-primary">
                 Pesquisar
@@ -87,6 +90,7 @@
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Sim',
+                    confirmButtonColor: '#0d6efd',
                     cancelButtonText: 'Cancelar',
                     cancelButtonColor: '#d33',
                     reverseButtons: true
