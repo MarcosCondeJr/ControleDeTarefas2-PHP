@@ -9,11 +9,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mt-5">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/categoria'">
+            <i class="bi bi-arrow-left-circle"></i>
+            Voltar
+        </button>
+        <div class="d-flex justify-content-between align-items-center mt-3">
             <h1>Lista de Categorias</h1>
-           
         </div>
-        <div class="form-group d-flex mt-5">
+        <div class="form-group d-flex mt-4">
             <input type="text" class="form-control w-25" placeholder="Consulta">
             <button type="submit" class="btn btn-primary">
                 Pesquisar
@@ -42,14 +45,20 @@
                                 <td><?= htmlspecialchars($cat['nm_categoria']) ?></td>
                                 <td><?= htmlspecialchars($cat['ds_categoria']) ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
-                                        Editar
-                                    </a>
-                                    <a href="#" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                        Deletar
-                                    </a>
+                                    <form action="<?= BASE_URL ?>/editar-categoria" method="GET" style = "display: inline-flex">
+                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="bi bi-pencil-square"></i>
+                                            Editar
+                                        </button>
+                                    </form>
+                                    <form action="<?= BASE_URL ?>/delete-categoria" method="POST" id="deleteForm" style = "display: inline-flex">
+                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                        <button type="submit" class="btn btn-danger deleteButton">
+                                            <i class="bi bi-trash"></i>
+                                            Deletar
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -62,5 +71,38 @@
             </table>
         </div>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+
+    <script>
+        const deleteButtons = document.querySelectorAll('.deleteButton');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                const form = this.closest('form');
+                const formAction = form.action;
+
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim',
+                    confirmButtonColor: '#0d6efd',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    } else {
+                        
+                    }
+                });
+            });
+        });
+</script>
 </body>
 </html>
