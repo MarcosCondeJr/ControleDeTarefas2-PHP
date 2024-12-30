@@ -86,3 +86,9 @@ CREATE TABLE horario_tarefa (
 	CONSTRAINT fk_horario_tarefa_tipo FOREIGN KEY (id_tipohorario)
 	REFERENCES tipo_horario (id_tipohorario)
 );
+
+-- INSERTS
+
+-- TABELA TIPO USUARIO
+INSERT INTO tipo_usuario (nm_tipo)
+	VALUES ('Adminstrador'), ('Usuário')

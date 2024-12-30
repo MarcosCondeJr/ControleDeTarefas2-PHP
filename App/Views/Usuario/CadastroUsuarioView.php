@@ -43,7 +43,14 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label required">Tipo Usuário</label>
-                        <input type="text" class="form-control" class="id_tipousuario">
+                        <select class="form-select">
+                            <option>Selecione o tipo</option>
+                            <?php foreach ($tipoUsuario as $tipo): ?>
+                                    <option value="<?= $tipo['id_tipousuario']?>">
+                                        <?= $tipo['nm_tipo'] ?>
+                                    </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Senha</label>
