@@ -10,6 +10,7 @@ $routes = [
     '/delete-categoria' => 'CategoriaController@delete',
     '/editar-categoria' => 'CategoriaController@updateView',
     '/update-categoria' => 'CategoriaController@update',
+    '/categoria-search' => 'CategoriaController@search',
 
     //Rotas do Usuario
     '/usuarios' => 'UsuarioController@index',

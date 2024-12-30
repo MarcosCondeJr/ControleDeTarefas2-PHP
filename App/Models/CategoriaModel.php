@@ -145,4 +145,33 @@ class CategoriaModel
                 
                 $stmt->execute();
     }
+
+    /**
+     * Função que busca as categorias pela consulta
+     * @author: Marcos Conde
+     * @created: 29/12/2024
+     * @param: recebe o filtro vindo campo de pesquisa
+     */
+    public function search($filtro)
+    {
+        $sql = "SELECT * FROM categoria WHERE ";
+
+        if(is_numeric($filtro))
+        {
+            $sql .= "cd_categoria = :filtro";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([':filtro' => $filtro]);
+        }
+        else 
+        {
+            $sql .= "nm_categoria ILIKE :likeFiltro OR
+                     ds_categoria ILIKE :likeFiltro";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([':likeFiltro' => "%{$filtro}%"]);
+        }
+        return $stmt->fetchAll();
+    }
+
 }
