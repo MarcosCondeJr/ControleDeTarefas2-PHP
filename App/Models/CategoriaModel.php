@@ -161,7 +161,8 @@ class CategoriaModel
             $sql .= "cd_categoria = :filtro";
 
             $stmt = $this->db->prepare($sql);
-            $stmt->execute([':filtro' => $filtro]);
+            $stmt->bindValue(":filtro", $filtro);
+            $stmt->execute();
         }
         else 
         {
@@ -169,7 +170,8 @@ class CategoriaModel
                      ds_categoria ILIKE :likeFiltro";
 
             $stmt = $this->db->prepare($sql);
-            $stmt->execute([':likeFiltro' => "%{$filtro}%"]);
+            $stmt->bindValue(":likeFiltro", "%{$filtro}%");
+            $stmt->execute();
         }
         return $stmt->fetchAll();
     }
