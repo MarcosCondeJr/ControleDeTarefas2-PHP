@@ -152,4 +152,21 @@ class CategoriaController
         }
         RenderView::loadView('Categoria', 'EditarCategoriaView', ['error' => $error]);
     }
+
+    public function search()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $filtro = $_GET['filtro'] ?? null;
+            if($filtro != '')
+            {
+                $categorias = $this->categoria->search($filtro);
+            }
+            else 
+            {
+                $categorias = $this->categoria->getAll();
+            }
+        }
+        RenderView::loadView('Categoria', 'ListCategoriaView', ['categorias' => $categorias]);
+    }
 }
