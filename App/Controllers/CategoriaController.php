@@ -5,6 +5,7 @@ use App\Utils\RenderView;
 use App\Config\Connection;
 use App\Models\CategoriaModel;
 use Exception;
+use PDOException;
 
 class CategoriaController
 {
