@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="menuNavbar">
                 <div class="navbar-nav">
                     <a href="#" class="nav-link">Tarefas</a>
-                    <a href="<?= BASE_URL ?>/users" class="nav-link">Usuários</a>
+                    <a href="<?= BASE_URL ?>/usuarios" class="nav-link">Usuários</a>
                     <a href="<?= BASE_URL ?>/categoria" class="nav-link">Categorias</a>
                 </div>
                 <div class="navbar-nav ms-auto">
