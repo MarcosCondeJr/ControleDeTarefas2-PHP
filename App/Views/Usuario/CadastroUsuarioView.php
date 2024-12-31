@@ -14,36 +14,36 @@
             Voltar
         </button>
         <div class="mt-4">
-            <form action="<?= BASE_URL ?>/usuarios" id="formUsuario">
+            <form action="<?= BASE_URL ?>/create-usuario" id="formUsuario" method="POST">
                 <h1 class="mb-4">Cadastro de Usuário</h1>
                 <div class="row mb-3">
                     <div class="col-sm-1">
                         <label for="" class="form-label">Código</label>
-                        <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" class="cd_usuario" readonly>
+                        <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" class="cd_usuario">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label required">Nome Usuário</label>
-                        <input type="text" class="form-control" class="nm_usuario">
+                        <input type="text" class="form-control" name="nm_usuario">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Nome Completo</label>
-                        <input type="text" class="form-control" class="nm_completo">
+                        <input type="text" class="form-control" name="nm_completo">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label required">Email</label>
-                        <input type="email" class="form-control" class="email_usuario">
+                        <input type="email" class="form-control" name="email_usuario">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Telefone</label>
-                        <input type="text" class="form-control" class="telefone_usuario">
+                        <input type="text" class="form-control" name="telefone_usuario">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label required">Tipo Usuário</label>
-                        <select class="form-select">
+                        <select class="form-select" name="id_tipousuario">
                             <option>Selecione o tipo</option>
                             <?php foreach ($tipoUsuario as $tipo): ?>
                                     <option value="<?= $tipo['id_tipousuario']?>">
@@ -54,11 +54,11 @@
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Senha</label>
-                        <input type="password" class="form-control" class="senha" id="senha" maxlength="8">
+                        <input type="password" class="form-control" name="senha" id="senha" maxlength="8">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Confirmar Senha</label>
-                        <input type="password" class="form-control" class="confirmar_senha" id="confirmarSenha" maxlength="8">
+                        <input type="password" class="form-control" name="confirmar_senha" id="confirmarSenha" maxlength="8">
                         <div class="invalid-feedback">
                             As senhas não coincidem.
                         </div>
@@ -70,6 +70,7 @@
                         <textarea class="form-control" class="form-control"></textarea>
                     </div>
                 </div>
+                <input type="hidden" name="id_usuario">
                 <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
             </form>
         </div>

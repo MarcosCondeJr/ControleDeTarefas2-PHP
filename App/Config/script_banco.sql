@@ -8,6 +8,7 @@ CREATE TABLE tipo_usuario (
 CREATE TABLE usuarios (
 	id_usuario SERIAL NOT NULL,
 	id_tipousuario INT NOT NULL,
+	cd_usuario INT NOT NULL
 	nm_usuario VARCHAR(60) NOT NULL,
 	email_usuario VARCHAR(100) NOT NULL,
 	senha_usuario VARCHAR(8) NOT NULL,

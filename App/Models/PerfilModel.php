@@ -71,4 +71,19 @@ class PerfilModel
     {
         $this->dsUsuario = $dsUsuario;
     }
+
+    public function create()
+    {
+        $sql = "INSERT INTO perfil_usuario (id_usuario, nm_completo, telefone_usuario, ds_usuario)
+                VALUES (id_usuario = :id_usuario, nm_completo = :nm_completo, telefone_usuario = :telefone_usuario, ds_usuario = :ds_usuario)";
+
+        $stmt = $this->db->prepare($sql);
+
+        $stmt->bindValue("id_usuario", $this->getIdUsuario());
+        $stmt->bindValue("nm_completo", $this->getNmCompleto());
+        $stmt->bindValue("telefone_usuario", $this->getTelefone());
+        $stmt->bindValue("ds_usuario", $this->getDsUsuario());
+
+        $stmt->execute();
+    }
 } 
