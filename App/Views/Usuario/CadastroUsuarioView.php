@@ -37,7 +37,7 @@
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Telefone</label>
-                        <input type="text" class="form-control" name="telefone_usuario">
+                        <input type="text" class="form-control" name="telefone_usuario" maxlength="15" id="telefone">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -77,6 +77,7 @@
     </div>
 
     <script>
+        //Verifica se o confirmar senha é igual ao da senha
         document.getElementById('formUsuario').addEventListener('submit', function (event) {
             const senha = document.getElementById('senha');
             const confirmarSenha = document.getElementById('confirmarSenha');
@@ -92,6 +93,21 @@
         document.getElementById('confirmarSenha').addEventListener('input', function () {
             this.classList.remove('is-invalid');
         });
+
+        // Mascara de input telefone
+        function aplicarMascaraTelefone(event) {
+            var input = event.target;
+            var valor = input.value.replace(/\D/g, '');
+
+            if (valor.length <= 2) {
+                input.value = '(' + valor;
+            } else if (valor.length <= 6) {
+                input.value = '(' + valor.slice(0, 2) + ') ' + valor.slice(2);
+            } else {
+                input.value = '(' + valor.slice(0, 2) + ') ' + valor.slice(2, 7) + '-' + valor.slice(7, 11);
+            }
+        }
+        document.getElementById('telefone').addEventListener('input', aplicarMascaraTelefone);
     </script>
 </body>
 </html>
