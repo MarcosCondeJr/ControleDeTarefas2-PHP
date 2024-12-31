@@ -41,4 +41,21 @@ class TipoUsuarioModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tipo_usuario WHERE id_tipousuario = :id_tipo_usuario");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+
+        if ($result)
+         {
+            $tipoUsuario = new TipoUsuarioModel($this->db);
+            $tipoUsuario->setIdTipoUsuario($result['id_tipousuario']);
+            $tipoUsuario->setNmTipo($result['nm_tipo']);
+  
+            return $tipoUsuario;
+        }
+        return null;
+    }
 }

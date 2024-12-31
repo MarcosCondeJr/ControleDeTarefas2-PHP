@@ -38,7 +38,7 @@ class UsuarioController
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $idUsuario      = $_POST['id_usuario'] ?? null;
+            // $idUsuario      = $_POST['id_usuario'] ?? null;
             $cdUsuario      = $_POST['cd_usuario'] ?? null;
             $idTipousuario  = $_POST['id_tipousuario'] ?? null;
             $email          = $_POST['email'] ?? null;
@@ -48,25 +48,31 @@ class UsuarioController
             $telefone       = $_POST['telefone_usuario'] ?? null;
             $descricao      = $_POST['ds_usuario'] ?? null;
 
-            var_dump($_POST);
+            //Atribui os valores e cria o usuario.
+            // $this->usuario->setIdUsuario($idUsuario);
+            
+            $tipoUsuario = new TipoUsuarioModel($this->db);
+            $tipoUsuario = $tipoUsuario->getById($idTipousuario);
+            var_dump($tipoUsuario);
 
-            //Atribui os valores na model de usuario.
-            $this->usuario->setIdUsuario($idUsuario);
-            $this->usuario->setCdUsuario($cdUsuario);
+            $this->usuario->setTipoUsuario($tipoUsuario);
             $this->usuario->setEmail($email);
             $this->usuario->setSenha($senha);
             
-            //Erro ao atribui o id do tipo 
-            $tipo = new TipoUsuarioModel($this->db);
-            $tipo->setIdTipoUsuario($idTipousuario);
+            $this->usuario->create();
 
+            $usuario = new UsuarioModel($this->db);
+            $idUsuario = $usuario->getIdUsuario();
+            var_dump($idUsuario);
+            
             //Atribui os valores na model de Perfil Usuário
+
             $this->perfilUsuario->setIdUsuario($idUsuario);
+            $this->perfilUsuario->setCdUsuario($cdUsuario);
             $this->perfilUsuario->setNmCompleto($nmCompleto);
             $this->perfilUsuario->setTelefone($telefone);
             $this->perfilUsuario->setDsUsuario($descricao);
 
-            $this->usuario->create();
             $this->perfilUsuario->create();
         }
     }

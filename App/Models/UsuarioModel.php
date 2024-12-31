@@ -7,16 +7,16 @@ use PDO;
 class UsuarioModel 
 {
     private $idUsuario;
-    private $cdUsuario;
     private $nmUsuario;
     private $email;
     private $senha;
     private $db;
-    private TipoUsuarioModel $idTipoUsuario;
+    private TipoUsuarioModel $tipoUsuario;
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
+        $this->tipoUsuario = new TipoUsuarioModel($this->db);
     }
 
     /**
@@ -31,16 +31,6 @@ class UsuarioModel
     public function setIdUsuario($idUsuario)
     {
         $this->idUsuario = $idUsuario;
-    }
-
-    public function getCdUsuario()
-    {
-        return $this->cdUsuario;
-    }
-
-    public function setCdUsuario($cdUsuario)
-    {
-        $this->cdUsuario = $cdUsuario;
     }
 
     public function getNmUsuario()
@@ -73,31 +63,29 @@ class UsuarioModel
         $this->senha = $senha;
     }
 
-    public function getIdTipoUsuario()
+    public function getTipoUsuario()
     {
-        return $this->idUsuario;
+        return $this->tipoUsuario;
     }
 
-    public function setIdTipoUsuario(TipoUsuarioModel $tipoUsuario)
+    public function setTipoUsuario(TipoUsuarioModel $tipoUsuario)
     {
         $this->tipoUsuario = $tipoUsuario;
     }
 
     public function create()
     {
-        $sql = "INSERT INTO usuarios (cd_usuario, nm_usuario, email_usuario, senha_usuario)
-                    VALUES (cd_usuario = :cd_usuario, nm_usuario = :nm_usuario, email_usuario = :email_usuario, 
-                            senha_usuario = :senha_usuario, id_tipousuario = :id_tipousuario)";
+        $sql = "INSERT INTO usuarios (nm_usuario, email_usuario, senha_usuario, id_tipousuario)
+                    VALUES (:nm_usuario, :email_usuario, :senha_usuario, :id_tipousuario)";
 
         $senhaHash = password_hash($this->getSenha(), PASSWORD_DEFAULT);
 
         $stmt = $this->db->prepare($sql);
         
-        $stmt->bindValue(":cd_usuario", $this->getCdUsuario());
         $stmt->bindValue(":nm_usuario", $this->getNmUsuario());
         $stmt->bindValue(":email_usuario", $this->getEmail());
         $stmt->bindValue(":senha_usuario", $senhaHash);
-        $stmt->bindValue(":id_tipousuario", $this->getIdTipoUsuario());
+        $stmt->bindValue(":id_tipousuario", $this->getTipoUsuario()->getIdTipoUsuario());
 
         $stmt->execute();
     }

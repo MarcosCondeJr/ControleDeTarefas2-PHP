@@ -7,6 +7,7 @@ use PDO;
 class PerfilModel 
 {
     private $idPerfil;
+    private $cdUsuario;
     private UsuarioModel $idUsuario;
     private $nmCompleto;
     private $telefone;
@@ -42,6 +43,16 @@ class PerfilModel
         $this->idUsuario = $idUsuario;
     }
 
+    public function getCdUsuario()
+    {
+        return $this->cdUsuario;
+    }
+
+    public function setCdUsuario($cdUsuario)
+    {
+        $this->cdUsuario = $cdUsuario;
+    }
+
     public function getNmCompleto()
     {
         return $this->nmCompleto;
@@ -74,12 +85,13 @@ class PerfilModel
 
     public function create()
     {
-        $sql = "INSERT INTO perfil_usuario (id_usuario, nm_completo, telefone_usuario, ds_usuario)
-                VALUES (id_usuario = :id_usuario, nm_completo = :nm_completo, telefone_usuario = :telefone_usuario, ds_usuario = :ds_usuario)";
+        $sql = "INSERT INTO perfil_usuario (cd_usuario, id_usuario, nm_completo, telefone_usuario, ds_usuario)
+                VALUES (:cd_usuario, :id_usuario, :nm_completo, :telefone_usuario, :ds_usuario)";
 
         $stmt = $this->db->prepare($sql);
 
         $stmt->bindValue("id_usuario", $this->getIdUsuario());
+        $stmt->bindValue(":cd_usuario", $this->getCdUsuario());
         $stmt->bindValue("nm_completo", $this->getNmCompleto());
         $stmt->bindValue("telefone_usuario", $this->getTelefone());
         $stmt->bindValue("ds_usuario", $this->getDsUsuario());
