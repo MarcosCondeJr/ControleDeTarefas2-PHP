@@ -36,6 +36,9 @@ class UsuarioController
 
     public function create()
     {
+        $sucesso = false;
+        $error = null;
+        
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             // $idUsuario      = $_POST['id_usuario'] ?? null;
@@ -48,32 +51,42 @@ class UsuarioController
             $telefone       = $_POST['telefone_usuario'] ?? null;
             $descricao      = $_POST['ds_usuario'] ?? null;
 
-            //Atribui os valores e cria o usuario.
-            // $this->usuario->setIdUsuario($idUsuario);
-            
-            $tipoUsuario = new TipoUsuarioModel($this->db);
-            $tipoUsuario = $tipoUsuario->getById($idTipousuario);
+            try
+            {
+                //Atribui os valores da table usuario.
+                $tipoUsuario = new TipoUsuarioModel($this->db);
+                $tipoUsuario = $tipoUsuario->getById($idTipousuario);
 
-            $this->usuario->setTipoUsuario($tipoUsuario);
-            $this->usuario->setNmUsuario($nmUsuario);
-            $this->usuario->setEmail($email);
-            $this->usuario->setSenha($senha);
-            var_dump($email);
-            $this->usuario->create();
+                $this->usuario->setTipoUsuario($tipoUsuario);
+                $this->usuario->setNmUsuario($nmUsuario);
+                $this->usuario->setEmail($email);
+                $this->usuario->setSenha($senha);
+                
+                //Salva um Usuario
+                $idUsuario = $this->usuario->create();
+                
+                //Atribui os valores na model de Perfil Usuário
+                $usuario = new UsuarioModel($this->db);
+                $idUsuario = $usuario->getById($idUsuario);
+                
+                $this->perfilUsuario->setIdUsuario($idUsuario);
+                $this->perfilUsuario->setCdUsuario($cdUsuario);
+                $this->perfilUsuario->setNmCompleto($nmCompleto);
+                $this->perfilUsuario->setTelefone($telefone);
+                $this->perfilUsuario->setDsUsuario($descricao);
 
-            $usuario = new UsuarioModel($this->db);
-            $idUsuario = $usuario->getIdUsuario();
-            var_dump($idUsuario);
-            
-            //Atribui os valores na model de Perfil Usuário
+                //Salva o perfil
+                $this->perfilUsuario->create();
 
-            $this->perfilUsuario->setIdUsuario($idUsuario);
-            $this->perfilUsuario->setCdUsuario($cdUsuario);
-            $this->perfilUsuario->setNmCompleto($nmCompleto);
-            $this->perfilUsuario->setTelefone($telefone);
-            $this->perfilUsuario->setDsUsuario($descricao);
-
-            $this->perfilUsuario->create();
+                $sucesso = true;
+                RenderView::loadView('Usuario', 'CadastroUsuarioView', ['sucesso' => $sucesso] );
+                exit();
+            }
+            catch(Exception $e)
+            {
+                $error = $e->getMessage();
+            }
         }
+        RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error] );
     }
 }

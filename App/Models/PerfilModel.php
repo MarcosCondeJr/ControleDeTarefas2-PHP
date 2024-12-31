@@ -17,6 +17,7 @@ class PerfilModel
     public function __construct(PDO $db)
     {
         $this->db = $db;
+        $this->idUsuario = new UsuarioModel($this->db);
     }
 
     /**
@@ -90,11 +91,11 @@ class PerfilModel
 
         $stmt = $this->db->prepare($sql);
 
-        $stmt->bindValue("id_usuario", $this->getIdUsuario());
+        $stmt->bindValue(":id_usuario", $this->getIdUsuario()->getIdUsuario());
         $stmt->bindValue(":cd_usuario", $this->getCdUsuario());
-        $stmt->bindValue("nm_completo", $this->getNmCompleto());
-        $stmt->bindValue("telefone_usuario", $this->getTelefone());
-        $stmt->bindValue("ds_usuario", $this->getDsUsuario());
+        $stmt->bindValue(":nm_completo", $this->getNmCompleto());
+        $stmt->bindValue(":telefone_usuario", $this->getTelefone());
+        $stmt->bindValue(":ds_usuario", $this->getDsUsuario());
 
         $stmt->execute();
     }

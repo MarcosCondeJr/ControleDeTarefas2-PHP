@@ -19,7 +19,7 @@
                 <div class="row mb-3">
                     <div class="col-sm-1">
                         <label for="" class="form-label">Código</label>
-                        <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" class="cd_usuario">
+                        <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_usuario">
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label required">Nome Usuário</label>
@@ -67,7 +67,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label">Descrição</label>
-                        <textarea class="form-control" class="form-control"></textarea>
+                        <textarea class="form-control" name="ds_usuario"></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="id_usuario">

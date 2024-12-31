@@ -73,6 +73,21 @@ class UsuarioModel
         $this->tipoUsuario = $tipoUsuario;
     }
 
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE id_usuario = :id_usuario");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        
+        if ($result)
+        {
+            $usuario = new UsuarioModel($this->db);
+            $usuario->setIdUsuario($result['id_usuario']);
+            return $usuario;
+        }
+        return null;
+    }
+
     public function create()
     {
         $sql = "INSERT INTO usuarios (nm_usuario, email_usuario, senha_usuario, id_tipousuario)
@@ -88,5 +103,6 @@ class UsuarioModel
         $stmt->bindValue(":id_tipousuario", $this->getTipoUsuario()->getIdTipoUsuario());
 
         $stmt->execute();
+        return $this->db->lastInsertId();
     }
 } 
