@@ -30,8 +30,19 @@ class UsuarioController
 
     public function createView()
     {
+        //Pega todos os tipos de usuarios e leva para o select na view
         $tipoUsuario = $this->tipoUsuario->getAll();
-        RenderView::loadView('Usuario', 'CadastroUsuarioView', ['tipoUsuario' => $tipoUsuario]);
+
+        //Gera um código
+        $usuario = $this->perfilUsuario->getByCodigo();
+        $codigo = RenderView::gerarCódigo($usuario, 'cd_usuario');
+
+        $data = [
+            'codigo' => $codigo,
+            'tipoUsuario' => $tipoUsuario
+        ];
+
+        RenderView::loadView('Usuario', 'CadastroUsuarioView', $data);
     }
 
     public function create()

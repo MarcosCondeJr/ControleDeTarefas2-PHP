@@ -29,14 +29,8 @@ class CategoriaController
     {
         //Gera um código automaticamente
         $categoria = $this->categoria->getByCodigo();
-        if(!empty($categoria))
-        {
-            $codigo = $categoria['cd_categoria'] + 1;
-        }
-        else
-        {
-            $codigo = 1;
-        }
+        $codigo = RenderView::gerarCódigo($categoria, 'cd_categoria');
+        
         RenderView::loadView('Categoria', 'cadastroCategoriaView', ['codigo' => $codigo]);
     }
 

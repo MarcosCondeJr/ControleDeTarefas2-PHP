@@ -84,6 +84,17 @@ class PerfilModel
         $this->dsUsuario = $dsUsuario;
     }
 
+    /**
+     * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
+     * @author: Marcos Conde
+     * @created: 31/12/2024
+     */
+    public function getByCodigo()
+    {
+        $stmt = $this->db->query("SELECT * FROM perfil_usuario ORDER BY cd_usuario DESC LIMIT 1");
+        return $stmt->fetch();
+    }   
+
     public function create()
     {
         $sql = "INSERT INTO perfil_usuario (cd_usuario, id_usuario, nm_completo, telefone_usuario, ds_usuario)
