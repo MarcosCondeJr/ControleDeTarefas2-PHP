@@ -14,7 +14,7 @@
             Voltar
         </button>
         <div class="mt-4">
-            <form action="">
+            <form action="<?= BASE_URL ?>/usuarios" id="formUsuario">
                 <h1 class="mb-4">Cadastro de Usuário</h1>
                 <div class="row mb-3">
                     <div class="col-sm-1">
@@ -54,11 +54,14 @@
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Senha</label>
-                        <input type="password" class="form-control" class="senha_usuario">
+                        <input type="password" class="form-control" class="senha" id="senha" maxlength="8">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Confirmar Senha</label>
-                        <input type="password" class="form-control" class="senha_usuario">
+                        <input type="password" class="form-control" class="confirmar_senha" id="confirmarSenha" maxlength="8">
+                        <div class="invalid-feedback">
+                            As senhas não coincidem.
+                        </div>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -71,5 +74,23 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById('formUsuario').addEventListener('submit', function (event) {
+            const senha = document.getElementById('senha');
+            const confirmarSenha = document.getElementById('confirmarSenha');
+
+            if (senha.value !== confirmarSenha.value) {
+                event.preventDefault();
+                confirmarSenha.classList.add('is-invalid');
+            } else {
+                confirmarSenha.classList.remove('is-invalid');
+            }
+        });
+
+        document.getElementById('confirmarSenha').addEventListener('input', function () {
+            this.classList.remove('is-invalid');
+        });
+    </script>
 </body>
 </html>
