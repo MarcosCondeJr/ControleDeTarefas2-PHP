@@ -41,7 +41,7 @@ class UsuarioController
             // $idUsuario      = $_POST['id_usuario'] ?? null;
             $cdUsuario      = $_POST['cd_usuario'] ?? null;
             $idTipousuario  = $_POST['id_tipousuario'] ?? null;
-            $email          = $_POST['email'] ?? null;
+            $email          = $_POST['email_usuario'] ?? null;
             $nmUsuario      = $_POST['nm_usuario'] ?? null;
             $senha          = $_POST['confirmar_senha'] ?? null;
             $nmCompleto     = $_POST['nm_completo'] ?? null;
@@ -53,12 +53,12 @@ class UsuarioController
             
             $tipoUsuario = new TipoUsuarioModel($this->db);
             $tipoUsuario = $tipoUsuario->getById($idTipousuario);
-            var_dump($tipoUsuario);
 
             $this->usuario->setTipoUsuario($tipoUsuario);
+            $this->usuario->setNmUsuario($nmUsuario);
             $this->usuario->setEmail($email);
             $this->usuario->setSenha($senha);
-            
+            var_dump($email);
             $this->usuario->create();
 
             $usuario = new UsuarioModel($this->db);
