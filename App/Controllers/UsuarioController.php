@@ -88,7 +88,7 @@ class UsuarioController
 
                 //Salva o perfil
                 $this->perfilUsuario->create();
-
+                
                 $sucesso = true;
                 RenderView::loadView('Usuario', 'CadastroUsuarioView', ['sucesso' => $sucesso] );
                 exit();
