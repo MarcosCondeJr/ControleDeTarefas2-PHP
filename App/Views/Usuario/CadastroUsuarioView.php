@@ -76,6 +76,7 @@
         </div>
     </div>
 
+    <script src="public/js/sweetAlert2.js"></script>
     <script>
         //Verifica se o confirmar senha é igual ao da senha
         document.getElementById('formUsuario').addEventListener('submit', function (event) {
@@ -109,5 +110,25 @@
         }
         document.getElementById('telefone').addEventListener('input', aplicarMascaraTelefone);
     </script>
+
+    <!-- Alert de Sucesso -->
+    <?php if (isset($sucesso)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                title: "Sucesso!",
+                text: "Usuário Cadastrado!",
+                icon: "success",
+                confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= BASE_URL ?>/usuarios';
+                    } else {
+                        window.location.href = '<?= BASE_URL ?>/usuarios';
+                    }
+                });
+            }
+        </script>
+    <?php endif; ?>
 </body>
 </html>
