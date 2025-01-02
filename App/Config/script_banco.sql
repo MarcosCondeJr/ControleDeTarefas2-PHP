@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
 	id_tipousuario INT NOT NULL,
 	nm_usuario VARCHAR(60) NOT NULL,
 	email_usuario VARCHAR(100) NOT NULL,
-	senha_usuario VARCHAR(8) NOT NULL,
+	senha_usuario VARCHAR(65) NOT NULL,
 
 	CONSTRAINT pk_usuarios PRIMARY KEY (id_usuario),
 	CONSTRAINT fk_tipousuario FOREIGN KEY (id_tipousuario)
@@ -20,6 +20,7 @@ CREATE TABLE usuarios (
 CREATE TABLE perfil_usuario (
 	id_perfil SERIAL NOT NULL,
 	id_usuario INT NOT NULL,
+	cd_usuario INT NOT NULL,
 	nm_completo VARCHAR(100) NOT NULL,
 	telefone_usuario VARCHAR(14) NOT NULL,
 	ds_usuario VARCHAR(150),
@@ -92,3 +93,14 @@ CREATE TABLE horario_tarefa (
 -- TABELA TIPO USUARIO
 INSERT INTO tipo_usuario (nm_tipo)
 	VALUES ('Adminstrador'), ('Usuário')
+
+
+-- QUERY PARA BUSCAR USUÁRIOS E ADICIONAR A LISTAGEM
+SELECT 
+	pf.cd_usuario as codigo,
+	us.nm_usuario as Usuario,
+	us.email_usuario as Email,
+	pf.telefone_usuario as telefone
+FROM usuarios as us
+JOIN
+perfil_usuario as pf on pf.id_usuario = us.id_usuario
