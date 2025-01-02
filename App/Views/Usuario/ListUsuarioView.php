@@ -38,6 +38,7 @@
                         <th>Nome Usuario</th>
                         <th>Email</th>
                         <th>Telefone</th>
+                        <th>Tipo Usuário</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -46,9 +47,10 @@
                         <?php foreach($usuarios as $usuario) : ?>
                             <tr>
                                 <td><?php echo $usuario['cd_usuario'] ?></td>
-                                <td><?= $usuario['nm_usuario'] ?></td>
-                                <td><?= $usuario['email_usuario'] ?></td>
-                                <td><?= $usuario['telefone_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_usuario'] ?></td>
+                                <td><?php echo $usuario['email_usuario'] ?></td>
+                                <td><?php echo $usuario['telefone_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_tipo']?></td>
                                 <td>
                                     <form action="<?= BASE_URL ?>#" method="GET" style = "display: inline-flex">
                                         <input type="hidden" name="id_categoria" value="">

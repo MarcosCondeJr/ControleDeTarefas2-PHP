@@ -95,14 +95,17 @@ class UsuarioModel
                     pf.cd_usuario,
                     us.nm_usuario,
                     us.email_usuario,
-                    pf.telefone_usuario
+                    pf.telefone_usuario,
+                    tp.nm_tipo
                 FROM
                     usuarios AS us
                 JOIN
-                    perfil_usuario AS pf ON pf.id_usuario = us.id_usuario";
+                    perfil_usuario AS pf ON pf.id_usuario = us.id_usuario
+                JOIN
+                    tipo_usuario AS tp ON tp.id_tipousuario = us.id_tipousuario";
+
         $stmt =$this->db->query($sql);
         return $stmt->fetchAll();
-     
     }
 
     public function create()
