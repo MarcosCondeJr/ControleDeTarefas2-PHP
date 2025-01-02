@@ -38,15 +38,19 @@
                         <th>Nome Usuario</th>
                         <th>Email</th>
                         <th>Telefone</th>
+                        <th>Tipo Usuário</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    <?php if (!empty($usuarios)): ?>
+                        <?php foreach($usuarios as $usuario) : ?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td><?php echo $usuario['cd_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_usuario'] ?></td>
+                                <td><?php echo $usuario['email_usuario'] ?></td>
+                                <td><?php echo $usuario['telefone_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_tipo']?></td>
                                 <td>
                                     <form action="<?= BASE_URL ?>#" method="GET" style = "display: inline-flex">
                                         <input type="hidden" name="id_categoria" value="">
@@ -64,6 +68,12 @@
                                     </form>
                                 </td>
                             </tr>
+                        <?php endforeach;?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">Nenhum registro encontrado.</td>
+                        </tr>
+                    <?php endif;?>
                 </tbody>
             </table>
         </div>
