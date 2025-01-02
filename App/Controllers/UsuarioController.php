@@ -25,7 +25,8 @@ class UsuarioController
 
     public function index()
     {
-        RenderView::loadView('Usuario', 'ListUsuarioView', []);
+        $usuarios = $this->usuario->getAll();
+        RenderView::loadView('Usuario', 'ListUsuarioView', ['usuarios' => $usuarios]);
     }
 
     public function createView()

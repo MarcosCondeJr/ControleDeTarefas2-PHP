@@ -88,6 +88,23 @@ class UsuarioModel
         return null;
     }
 
+    //Busca os Usuarios e seu perfil
+    public function getAll()
+    {
+        $sql = "SELECT
+                    pf.cd_usuario,
+                    us.nm_usuario,
+                    us.email_usuario,
+                    pf.telefone_usuario
+                FROM
+                    usuarios AS us
+                JOIN
+                    perfil_usuario AS pf ON pf.id_usuario = us.id_usuario";
+        $stmt =$this->db->query($sql);
+        return $stmt->fetchAll();
+     
+    }
+
     public function create()
     {
         $sql = "INSERT INTO usuarios (nm_usuario, email_usuario, senha_usuario, id_tipousuario)
