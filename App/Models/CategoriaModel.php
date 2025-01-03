@@ -114,9 +114,10 @@ class CategoriaModel
     }
     
     /**
-     * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
+     * Função Responsável por Buscar a categoria pelo código, para fazer validação
      * @author: Marcos Conde
-     * @created: 27/12/2024
+     * @created: 02/01/2025
+     * param: código que vem do formulario
      */
     public function getByCodigo($codigo)
     {

@@ -35,7 +35,7 @@ class UsuarioController
         $tipoUsuario = $this->tipoUsuario->getAll();
 
         //Gera um código
-        $usuario = $this->perfilUsuario->getByCodigo();
+        $usuario = $this->perfilUsuario->getLastCodigo();
         $codigo = RenderView::gerarCódigo($usuario, 'cd_usuario');
 
         $data = [

@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-sm-2 mb-3">
                     <label for="codigoCategoria" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>">
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>" readonly>
                 </div>
                 <div class="col mb-3">
                     <label for="nomeCategoria" class="form-label required">Nome Categoria</label>
