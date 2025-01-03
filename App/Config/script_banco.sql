@@ -93,14 +93,3 @@ CREATE TABLE horario_tarefa (
 -- TABELA TIPO USUARIO
 INSERT INTO tipo_usuario (nm_tipo)
 	VALUES ('Adminstrador'), ('Usuário')
-
-
--- QUERY PARA BUSCAR USUÁRIOS E ADICIONAR A LISTAGEM
-SELECT 
-	pf.cd_usuario as codigo,
-	us.nm_usuario as Usuario,
-	us.email_usuario as Email,
-	pf.telefone_usuario as telefone
-FROM usuarios as us
-JOIN
-perfil_usuario as pf on pf.id_usuario = us.id_usuario
