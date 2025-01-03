@@ -89,11 +89,24 @@ class PerfilModel
      * @author: Marcos Conde
      * @created: 31/12/2024
      */
-    public function getByCodigo()
+    public function getLastCodigo()
     {
         $stmt = $this->db->query("SELECT * FROM perfil_usuario ORDER BY cd_usuario DESC LIMIT 1");
         return $stmt->fetch();
     }   
+
+    /**
+     * Função Responsável por Buscar o perfil pelo código, para fazer validação
+     * @author: Marcos Conde
+     * @created: 02/01/2025
+     * param: código que vem do formulario
+     */
+    public function getByCodigo($codigo)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM perfil_usuario WHERE cd_usuario = :cd_usuario");
+        $stmt->execute([$codigo]);
+        return $stmt->fetch();
+    }
 
     public function create()
     {

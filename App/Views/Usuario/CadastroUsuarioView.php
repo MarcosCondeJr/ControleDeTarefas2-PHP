@@ -46,8 +46,8 @@
                         <select class="form-select" name="id_tipousuario">
                             <option>Selecione o tipo</option>
                             <?php foreach ($tipoUsuario as $tipo): ?>
-                                    <option value="<?= $tipo['id_tipousuario']?>">
-                                        <?= $tipo['nm_tipo'] ?>
+                                    <option value="<?= $tipo['id_tipousuario'] ?? $_POST['id_tipousuario'] ?>">
+                                        <?= $tipo['nm_tipo'] ?? $_POST['nm_tipo'] ?>
                                     </option>
                             <?php endforeach; ?>
                         </select>
@@ -130,5 +130,20 @@
             }
         </script>
     <?php endif; ?>
+
+    <!-- Alert de Erro -->
+    <?php if (isset($error)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atenção',
+                    text: '<?= $error ?>',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
+
 </body>
 </html>
