@@ -107,11 +107,23 @@ class CategoriaModel
      * @author: Marcos Conde
      * @created: 27/12/2024
      */
-    public function getByCodigo()
+    public function getLastCodigo()
     {
         $stmt = $this->db->query("SELECT * FROM categoria ORDER BY cd_categoria DESC LIMIT 1");
         return $stmt->fetch();
-    }    
+    }
+    
+    /**
+     * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
+     * @author: Marcos Conde
+     * @created: 27/12/2024
+     */
+    public function getByCodigo($codigo)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM categoria WHERE cd_categoria = :cd_categoria");
+        $stmt->execute([$codigo]);
+        return $stmt->fetch();
+    }
 
     /**
      * Função Responsável por Deletar a categoria
