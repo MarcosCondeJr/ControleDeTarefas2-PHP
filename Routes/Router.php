@@ -1,7 +1,8 @@
 <?php
 
 $routes = [
-    '/' => 'HomeController@index',
+    '/' => 'HomeController@LoginView',
+    '/home' => 'HomeController@index',
 
     //Rotas da Categoria
     '/categoria' => 'CategoriaController@index',
