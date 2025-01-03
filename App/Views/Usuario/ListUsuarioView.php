@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/'">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/home'">
             <i class="bi bi-arrow-left-circle"></i>
             Voltar
         </button>
