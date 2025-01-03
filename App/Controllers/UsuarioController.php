@@ -71,6 +71,6 @@ class UsuarioController
                 $error = $e->getMessage();
             }
         }
-        RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error]);
+        RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error, 'tipoUsuario' => $tipoUsuario]);
     }
 }

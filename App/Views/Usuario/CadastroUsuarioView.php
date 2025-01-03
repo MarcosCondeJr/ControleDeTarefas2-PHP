@@ -23,21 +23,21 @@
                     </div>
                     <div class="col-sm-4">
                         <label for="" class="form-label required">Nome Usuário</label>
-                        <input type="text" class="form-control" name="nm_usuario">
+                        <input type="text" class="form-control" name="nm_usuario" value="<?= $_POST['nm_usuario'] ?? '' ?>">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Nome Completo</label>
-                        <input type="text" class="form-control" name="nm_completo">
+                        <input type="text" class="form-control" name="nm_completo" value="<?= $_POST['nm_completo'] ?? '' ?>"> 
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label required">Email</label>
-                        <input type="email" class="form-control" name="email_usuario">
+                        <input type="email" class="form-control" name="email_usuario" value="<?= $_POST['email_usuario'] ?? '' ?>">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Telefone</label>
-                        <input type="text" class="form-control" name="telefone_usuario" maxlength="15" id="telefone">
+                        <input type="text" class="form-control" name="telefone_usuario" maxlength="15" id="telefone" value="<?= $_POST['telefone_usuario'] ?? '' ?>">
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -47,18 +47,18 @@
                             <option>Selecione o tipo</option>
                             <?php foreach ($tipoUsuario as $tipo): ?>
                                     <option value="<?= $tipo['id_tipousuario'] ?? $_POST['id_tipousuario'] ?>">
-                                        <?= $tipo['nm_tipo'] ?? $_POST['nm_tipo'] ?>
+                                        <?= $tipo['nm_tipo'] ?>
                                     </option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Senha</label>
-                        <input type="password" class="form-control" name="senha" id="senha" maxlength="8">
+                        <input type="password" class="form-control" name="senha" id="senha" maxlength="8" value="<?= $_POST['senha'] ?? '' ?>">
                     </div>
                     <div class="col">
                         <label for="" class="form-label required">Confirmar Senha</label>
-                        <input type="password" class="form-control" name="confirmar_senha" id="confirmarSenha" maxlength="8">
+                        <input type="password" class="form-control" name="confirmar_senha" id="confirmarSenha" maxlength="8" value="<?= $_POST['confirmar_senha'] ?? '' ?>">
                         <div class="invalid-feedback">
                             As senhas não coincidem.
                         </div>
@@ -67,7 +67,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="" class="form-label">Descrição</label>
-                        <textarea class="form-control" name="ds_usuario"></textarea>
+                        <textarea class="form-control" name="ds_usuario"><?= $_POST['ds_usuario'] ?? '' ?></textarea>
                     </div>
                 </div>
                 <input type="hidden" name="id_usuario">
