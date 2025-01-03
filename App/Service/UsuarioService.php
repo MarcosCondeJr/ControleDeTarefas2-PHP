@@ -13,7 +13,7 @@ class UsuarioService
 {
     private $db;
     private $usuario;
-    private $perfil;
+    private $perfilUsuario;
 
     public function __construct(PDO $db)
     {
