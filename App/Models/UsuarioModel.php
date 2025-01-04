@@ -92,6 +92,7 @@ class UsuarioModel
     public function getAll()
     {
         $sql = "SELECT
+                    us.id_usuario,
                     pf.cd_usuario,
                     us.nm_usuario,
                     us.email_usuario,
@@ -108,6 +109,11 @@ class UsuarioModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * Função Responsável por criar um usuário
+     * @author: Marcos Conde
+     * @created: 01/01/2025
+     */
     public function create()
     {
         $sql = "INSERT INTO usuarios (nm_usuario, email_usuario, senha_usuario, id_tipousuario)
@@ -124,5 +130,17 @@ class UsuarioModel
 
         $stmt->execute();
         return $this->db->lastInsertId();
+    }
+
+    /**
+     * Função Responsável por deletar um usuário
+     * @author: Marcos Conde
+     * @created: 04/01/2025
+     * param: id do usuário
+     */
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM usuarios WHERE id_usuario = :id_usuario");
+        return $stmt->execute([$id]);
     }
 } 

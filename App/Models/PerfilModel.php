@@ -108,6 +108,11 @@ class PerfilModel
         return $stmt->fetch();
     }
 
+    /**
+     * Função Responsável por criar o perfil do usuário
+     * @author: Marcos Conde
+     * @created: 01/01/2025
+     */
     public function create()
     {
         $sql = "INSERT INTO perfil_usuario (cd_usuario, id_usuario, nm_completo, telefone_usuario, ds_usuario)
@@ -122,5 +127,17 @@ class PerfilModel
         $stmt->bindValue(":ds_usuario", $this->getDsUsuario());
 
         $stmt->execute();
+    }
+
+    /**
+     * Função Responsável por deletar um perfil
+     * @author: Marcos Conde
+     * @created: 04/01/2025
+     * param: id do usuário
+     */
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM perfil_usuario WHERE id_usuario = :id_usuario");
+        return $stmt->execute([$id]);
     }
 } 

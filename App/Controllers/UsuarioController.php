@@ -73,4 +73,24 @@ class UsuarioController
         }
         RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error, 'tipoUsuario' => $tipoUsuario]);
     }
+
+    public function delete()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $idUsuario = $_GET['id_usuario'];
+            try
+            {
+                $this->perfilUsuario->delete($idUsuario);
+                $this->usuario->delete($idUsuario);
+
+                header("Location: " . BASE_URL . "/usuarios");
+                exit();
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erro ao deletar a categoria: ' . $e->getMessage());
+            }
+        }
+    }
 }
