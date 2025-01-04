@@ -78,5 +78,38 @@
             </table>
         </div>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+
+    <script>
+        const deleteButtons = document.querySelectorAll('.deleteButton');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                const form = this.closest('form');
+                const formAction = form.action;
+
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim',
+                    confirmButtonColor: '#0d6efd',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    } else {
+                        
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
