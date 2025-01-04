@@ -22,25 +22,25 @@ class CategoriaService
      * Função Responsável pela a regra de negócio e a criação da categoria
      * @author: Marcos Conde
      * @created: 02/01/2025
-     * $param: array com os campos do formulario;
+     * $param: objeto com os valores do formulário;
      */
-    public function create($data)
+    public function create($object)
     {
-        $categoria = $this->categoria->getByCodigo($data['cd_categoria']);
+        $categoria = $this->categoria->getByCodigo($object->cd_categoria);
 
         if(!empty($categoria))
         {
-            throw new Exception("Já existe uma categoria com o código {$data['cd_categoria']}");
+            throw new Exception("Já existe uma categoria com o código {$object->cd_categoria}");
         }
             
-        if(empty(trim($data['nm_categoria'])))
+        if(empty(trim($object->nm_categoria)))
         {
             throw new Exception('O Campo Nome é obrigatório!');
         }
 
-        $this->categoria->setCdCategoria($data['cd_categoria']);
-        $this->categoria->setNmCategoria($data['nm_categoria']);
-        $this->categoria->setDsCategoria($data['ds_categoria']);
+        $this->categoria->setCdCategoria($object->cd_categoria);
+        $this->categoria->setNmCategoria($object->nm_categoria);
+        $this->categoria->setDsCategoria($object->ds_categoria);
 
         //Cria a categoria
         $this->categoria->create();
@@ -50,20 +50,20 @@ class CategoriaService
      * Função Responsável pela a regra de negócio e a edição da categoria
      * @author: Marcos Conde
      * @created: 02/01/2025
-     * $param: array com os campos do formulario;
+     * $param: objeto com os valores do formulário;
      */
-    public function update($data)
+    public function update($object)
     {
-        if(empty(trim($data['nm_categoria'])))
+        if(empty(trim($object->nm_categoria)))
         {
             throw new Exception('O Campo Nome é obrigatório!');
         }
-
-        $this->categoria->setIdCategoria($data['id_categoria']);
-        $this->categoria->setCdCategoria($data['cd_categoria']);
-        $this->categoria->setNmCategoria($data['nm_categoria']);
-        $this->categoria->setDsCategoria($data['ds_categoria']);
-
+        
+        $this->categoria->setIdCategoria($object->id_categoria);
+        $this->categoria->setCdCategoria($object->cd_categoria);
+        $this->categoria->setNmCategoria($object->nm_categoria);
+        $this->categoria->setDsCategoria($object->ds_categoria);
+        
         //Atualiza a categoria
         $this->categoria->update();
     }

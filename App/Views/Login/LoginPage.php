@@ -11,7 +11,7 @@
 </head>
 <body class="text-center">
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-        <form action="<?= BASE_URL ?>/" method="POST">
+        <form action="<?= BASE_URL ?>/home" method="POST">
             <h1 class="h3 mb-4 fw-normal">Login</h1>
             <div class="form-floating">
                 <input type="text" class="form-control mb-2" id="email" placeholder="Enter email" name="email">

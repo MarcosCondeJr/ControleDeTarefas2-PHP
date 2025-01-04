@@ -44,19 +44,11 @@ class CategoriaController
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $cdCategoria = $_POST['cd_categoria'] ?? null;
-            $nmCategoria = $_POST['nm_categoria'] ?? null;
-            $dsCategoria = $_POST['ds_categoria'] ?? null;
-
-            $data = [
-                'cd_categoria' => $cdCategoria,
-                'nm_categoria' => $nmCategoria,
-                'ds_categoria' => $dsCategoria
-            ];
+            $object = json_decode(json_encode($_POST));
 
             try
             {
-                $this->service->create($data);
+                $this->service->create($object);
                 $sucesso = true;
                 RenderView::loadView('Categoria', 'cadastroCategoriaView', ['sucesso' => $sucesso]);
                 exit();
@@ -102,21 +94,11 @@ class CategoriaController
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $idCategoria = $_POST['id_categoria'] ?? null;
-            $cdCategoria = $_POST['cd_categoria'] ?? null;
-            $nmCategoria = $_POST['nm_categoria'] ?? null;
-            $dsCategoria = $_POST['ds_categoria'] ?? null;
-
-            $data = [
-                'id_categoria' => $idCategoria,
-                'cd_categoria' => $cdCategoria,
-                'nm_categoria' => $nmCategoria,
-                'ds_categoria' => $dsCategoria
-            ];
+            $object = json_decode(json_encode($_POST));
 
             try
             {       
-                $this->service->update($data);
+                $this->service->update($object);
                 $sucesso = true;
                 RenderView::loadView('Categoria', 'EditarCategoriaView', ['sucesso' => $sucesso]);
                 exit();
