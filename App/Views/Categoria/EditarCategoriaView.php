@@ -32,7 +32,7 @@
                     <textarea id="" class="form-control" name="ds_categoria"><?= $categoria['ds_categoria'] ?? $_POST['ds_categoria'] ?></textarea>
                 </div>
             </div>
-            <input type="hidden" name="id_categoria" value="<?= $categoria['id_categoria'] ?>">
+            <input type="hidden" name="id_categoria" value="<?= $categoria['id_categoria'] ?? $_POST['id_categoria'] ?>">
             <button type="button" class="btn btn-danger" id="cancelarButton">Cancelar</button>
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
         </form>

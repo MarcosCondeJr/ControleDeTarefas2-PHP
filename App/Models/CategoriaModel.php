@@ -121,7 +121,7 @@ class CategoriaModel
      */
     public function getByCodigo($codigo)
     {
-        $stmt = $this->db->prepare("SELECT * FROM categoria WHERE cd_categoria = :cd_categoria");
+        $stmt = $this->db->prepare("SELECT cd_categoria FROM categoria WHERE cd_categoria = :cd_categoria");
         $stmt->execute([$codigo]);
         return $stmt->fetch();
     }
@@ -150,13 +150,13 @@ class CategoriaModel
                     SET id_categoria = :id_categoria, cd_categoria = :cd_categoria, nm_categoria = :nm_categoria, ds_categoria = :ds_categoria
                     WHERE id_categoria = :id_categoria";
 
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindValue(":id_categoria", $this->getIdCategoria());
-                $stmt->bindValue(":cd_categoria", $this->getCdCategoria());
-                $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
-                $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
-                
-                $stmt->execute();
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id_categoria", $this->getIdCategoria());
+        $stmt->bindValue(":cd_categoria", $this->getCdCategoria());
+        $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
+        $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
+        
+        $stmt->execute();
     }
 
     /**
