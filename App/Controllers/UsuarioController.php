@@ -57,11 +57,11 @@ class UsuarioController
         
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $data = $_POST;
+            $object = json_decode(json_encode($_POST));
 
             try
             {
-                $this->service->create($data);
+                $this->service->create($object);
                 $sucesso = true;
                 RenderView::loadView('Usuario', 'CadastroUsuarioView', ['sucesso' => $sucesso] );
                 exit();
