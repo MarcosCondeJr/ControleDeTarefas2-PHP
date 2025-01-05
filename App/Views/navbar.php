@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
         <div class="container-fluid">
-            <a href="<?= BASE_URL ?>/" class="navbar-brand fs-4 d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
+            <a href="<?= BASE_URL ?>/home" class="navbar-brand fs-4 d-flex align-items-center" id="navbar-brand">Controle de Tarefas</a>
             <button class="navbar-toggler" type="button" 
                 data-bs-toggle="collapse" 
                 data-bs-target="#menuNavbar">
@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="menuNavbar">
                 <div class="navbar-nav">
                     <a href="#" class="nav-link">Tarefas</a>
-                    <a href="#" class="nav-link">Usuários</a>
+                    <a href="<?= BASE_URL ?>/usuarios" class="nav-link">Usuários</a>
                     <a href="<?= BASE_URL ?>/categoria" class="nav-link">Categorias</a>
                 </div>
                 <div class="navbar-nav ms-auto">
@@ -34,7 +34,7 @@
                                 <a href="#" class="dropdown-item">Meu Perfil</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item">Logout</a>
+                                <a href="<?= BASE_URL ?>/" class="dropdown-item">Logout</a>
                             </li>
                         </ul>
                     </div>

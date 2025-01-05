@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Categoria</title>
+    <title>Usuários</title>
 </head>
 <body>
     <div class="container">
@@ -14,18 +14,18 @@
             Voltar
         </button>
         <div class="d-flex justify-content-between align-items-center mt-3">
-            <h1>Lista de Categorias</h1>
+            <h1>Lista de Usuários</h1>
         </div>
         <div class="form-group d-flex align-items-center mt-4">
-            <form action="<?= BASE_URL ?>/categoria-search" method="GET" class="d-flex align-items-center">
+            <form action="#" method="GET" class="d-flex align-items-center">
                 <input type="text" class="form-control me-1" name="filtro" value="<?= $_GET['filtro'] ?? '' ?>" placeholder="Consulta">
-                <button type="button" class="btn btn-danger d-flex align-items-center" onclick="window.location.href='<?= BASE_URL ?>/categoria'"><i class="bi bi-eraser-fill"></i></button>
+                <button type="button" class="btn btn-danger d-flex align-items-center" onclick="window.location.href='<?= BASE_URL ?>/usuarios'"><i class="bi bi-eraser-fill"></i></button>
                 <button type="submit" class="btn btn-primary d-flex align-items-center ms-1">
                     Pesquisar
                     <i class="bi bi-search ms-1"></i>
                 </button>
             </form>
-            <button class="btn btn-success ms-2" onclick="window.location.href='<?= BASE_URL ?>/cadastro-categoria'">
+            <button class="btn btn-success ms-2" onclick="window.location.href='<?= BASE_URL ?>/cadastro-usuario'">
                 Cadastrar
                 <i class="bi bi-plus-circle ms-1"></i>
             </button>
@@ -35,28 +35,32 @@
                 <thead class="text-center">
                     <tr>
                         <th>Código</th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
+                        <th>Nome Usuario</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Tipo Usuário</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
-                    <?php if (!empty($categorias)): ?>
-                        <?php foreach($categorias as $cat): ?>
+                    <?php if (!empty($usuarios)): ?>
+                        <?php foreach($usuarios as $usuario) : ?>
                             <tr>
-                                <td><?= htmlspecialchars($cat['cd_categoria']) ?></td>
-                                <td><?= htmlspecialchars($cat['nm_categoria']) ?></td>
-                                <td><?= htmlspecialchars($cat['ds_categoria']) ?></td>
+                                <td><?php echo $usuario['cd_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_usuario'] ?></td>
+                                <td><?php echo $usuario['email_usuario'] ?></td>
+                                <td><?php echo $usuario['telefone_usuario'] ?></td>
+                                <td><?php echo $usuario['nm_tipo']?></td>
                                 <td>
-                                    <form action="<?= BASE_URL ?>/editar-categoria" method="GET" style = "display: inline-flex">
-                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                    <form action="<?= BASE_URL ?>/editar-usuario" method="GET" style ="display: inline-flex">
+                                        <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                         <button type="submit" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                             Editar
                                         </button>
                                     </form>
-                                    <form action="<?= BASE_URL ?>/delete-categoria" method="POST" id="deleteForm" style = "display: inline-flex">
-                                        <input type="hidden" name="id_categoria" value="<?= htmlspecialchars($cat['id_categoria']) ?>">
+                                    <form action="<?= BASE_URL ?>/delete-usuario" method="GET" id="deleteForm" style ="display: inline-flex">
+                                        <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                         <button type="submit" class="btn btn-danger deleteButton">
                                             <i class="bi bi-trash"></i>
                                             Deletar
@@ -64,12 +68,12 @@
                                     </form>
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endforeach;?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="4">Nenhuma categoria encontrada.</td>
+                            <td colspan="5">Nenhum registro encontrado.</td>
                         </tr>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </tbody>
             </table>
         </div>
@@ -106,6 +110,6 @@
                 });
             });
         });
-</script>
+    </script>
 </body>
 </html>

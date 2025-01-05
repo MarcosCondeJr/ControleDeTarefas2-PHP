@@ -107,11 +107,24 @@ class CategoriaModel
      * @author: Marcos Conde
      * @created: 27/12/2024
      */
-    public function getByCodigo()
+    public function getLastCodigo()
     {
         $stmt = $this->db->query("SELECT * FROM categoria ORDER BY cd_categoria DESC LIMIT 1");
         return $stmt->fetch();
-    }    
+    }
+    
+    /**
+     * Função Responsável por Buscar a categoria pelo código, para fazer validação
+     * @author: Marcos Conde
+     * @created: 02/01/2025
+     * param: código que vem do formulario
+     */
+    public function getByCodigo($codigo)
+    {
+        $stmt = $this->db->prepare("SELECT cd_categoria FROM categoria WHERE cd_categoria = :cd_categoria");
+        $stmt->execute([$codigo]);
+        return $stmt->fetch();
+    }
 
     /**
      * Função Responsável por Deletar a categoria
@@ -137,12 +150,43 @@ class CategoriaModel
                     SET id_categoria = :id_categoria, cd_categoria = :cd_categoria, nm_categoria = :nm_categoria, ds_categoria = :ds_categoria
                     WHERE id_categoria = :id_categoria";
 
-                $stmt = $this->db->prepare($sql);
-                $stmt->bindValue(":id_categoria", $this->getIdCategoria());
-                $stmt->bindValue(":cd_categoria", $this->getCdCategoria());
-                $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
-                $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
-                
-                $stmt->execute();
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id_categoria", $this->getIdCategoria());
+        $stmt->bindValue(":cd_categoria", $this->getCdCategoria());
+        $stmt->bindValue(":nm_categoria", $this->getNmCategoria());
+        $stmt->bindValue(":ds_categoria", $this->getDsCategoria());
+        
+        $stmt->execute();
     }
+
+    /**
+     * Função que busca as categorias pela consulta
+     * @author: Marcos Conde
+     * @created: 29/12/2024
+     * @param: recebe o filtro vindo campo de pesquisa
+     */
+    public function search($filtro)
+    {
+        $sql = "SELECT * FROM categoria WHERE ";
+
+        if(is_numeric($filtro))
+        {
+            $sql .= "cd_categoria = :filtro";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":filtro", $filtro);
+            $stmt->execute();
+        }
+        else 
+        {
+            $sql .= "nm_categoria ILIKE :likeFiltro OR
+                     ds_categoria ILIKE :likeFiltro";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":likeFiltro", "%{$filtro}%");
+            $stmt->execute();
+        }
+        return $stmt->fetchAll();
+    }
+
 }

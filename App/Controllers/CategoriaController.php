@@ -4,18 +4,22 @@ namespace App\Controllers;
 use App\Utils\RenderView;
 use App\Config\Connection;
 use App\Models\CategoriaModel;
+use App\Service\CategoriaService;
 use Exception;
+use PDOException;
 
 class CategoriaController
 {
     private $messagem;
     private $db;
     private $categoria;
+    private $service;
 
     public function __construct()
     {
         $this->db = (new Connection())->connect();
         $this->categoria = new CategoriaModel($this->db);
+        $this->service = new CategoriaService($this->db);
     }
 
     public function index()
@@ -27,19 +31,12 @@ class CategoriaController
     public function createView()
     {
         //Gera um código automaticamente
-        $categoria = $this->categoria->getByCodigo();
-        if(!empty($categoria))
-        {
-            $codigo = $categoria['cd_categoria'] + 1;
-        }
-        else
-        {
-            $codigo = 1;
-        }
+        $categoria = $this->categoria->getLastCodigo();
+        $codigo = RenderView::gerarCódigo($categoria, 'cd_categoria');
+        
         RenderView::loadView('Categoria', 'cadastroCategoriaView', ['codigo' => $codigo]);
     }
 
-    //Salva a categoria no Banco de dados
     public function create()
     {
         $error = null;
@@ -47,35 +44,11 @@ class CategoriaController
 
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $cdCategoria = $_POST['cd_categoria'] ?? null;
-            $nmCategoria = $_POST['nm_categoria'] ?? null;
-            $dsCategoria = $_POST['ds_categoria'] ?? null;
-
-            $categoria = $this->categoria->getAll();
+            $object = json_decode(json_encode($_POST));
 
             try
             {
-                //Verifica se não existe uma categoria com o mesmo código
-                foreach($categoria as $cat)
-                {
-                    if($cat['cd_categoria'] == $cdCategoria)
-                    {
-                        throw new Exception("Já existe uma categoria com o código $cdCategoria");
-                    }
-                }
-                    
-                if(empty(trim($nmCategoria)))
-                {
-                    throw new Exception('O Campo Nome é obrigatório!');
-                }
-
-                $this->categoria->setCdCategoria($cdCategoria);
-                $this->categoria->setNmCategoria($nmCategoria);
-                $this->categoria->setDsCategoria($dsCategoria);
-
-                //Cria a categoria
-                $this->categoria->create();
-
+                $this->service->create($object);
                 $sucesso = true;
                 RenderView::loadView('Categoria', 'cadastroCategoriaView', ['sucesso' => $sucesso]);
                 exit();
@@ -121,26 +94,11 @@ class CategoriaController
     {
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $idCategoria = $_POST['id_categoria'] ?? null;
-            $cdCategoria = $_POST['cd_categoria'] ?? null;
-            $nmCategoria = $_POST['nm_categoria'] ?? null;
-            $dsCategoria = $_POST['ds_categoria'] ?? null;
+            $object = json_decode(json_encode($_POST));
 
             try
             {       
-                if(empty(trim($nmCategoria)))
-                {
-                    throw new Exception('O Campo Nome é obrigatório!');
-                }
-
-                $this->categoria->setIdCategoria($idCategoria);
-                $this->categoria->setCdCategoria($cdCategoria);
-                $this->categoria->setNmCategoria($nmCategoria);
-                $this->categoria->setDsCategoria($dsCategoria);
-
-                //Atualiza a categoria
-                $this->categoria->update();
-
+                $this->service->update($object);
                 $sucesso = true;
                 RenderView::loadView('Categoria', 'EditarCategoriaView', ['sucesso' => $sucesso]);
                 exit();
@@ -151,5 +109,22 @@ class CategoriaController
             }
         }
         RenderView::loadView('Categoria', 'EditarCategoriaView', ['error' => $error]);
+    }
+
+    public function search()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $filtro = $_GET['filtro'] ?? null;
+            if($filtro != '')
+            {
+                $categorias = $this->categoria->search($filtro);
+            }
+            else 
+            {
+                $categorias = $this->categoria->getAll();
+            }
+        }
+        RenderView::loadView('Categoria', 'ListCategoriaView', ['categorias' => $categorias]);
     }
 }
