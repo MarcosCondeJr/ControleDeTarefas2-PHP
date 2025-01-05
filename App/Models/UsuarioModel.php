@@ -73,6 +73,18 @@ class UsuarioModel
         $this->tipoUsuario = $tipoUsuario;
     }
 
+    /**
+     * Função Responsável por Buscar o usuario para edição
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     */
+    public function getByUsuario($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE id_usuario = :id_usuario");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
     public function getById($id)
     {
         $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE id_usuario = :id_usuario");

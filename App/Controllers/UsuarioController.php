@@ -74,6 +74,25 @@ class UsuarioController
         RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error, 'tipoUsuario' => $tipoUsuario]);
     }
 
+    public function updateView()
+    {
+        $tipoUsuario = $this->tipoUsuario->getAll();
+
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $idUsuario = $_GET['id_usuario'];
+            $usuario = $this->usuario->getByUsuario($idUsuario);
+            $perfil = $this->perfilUsuario->getById($idUsuario);
+
+            $data = [
+                'usuario' => $usuario,
+                'perfil' => $perfil,
+                'tipoUsuario' => $tipoUsuario
+            ];
+        }
+        RenderView::loadView('Usuario', 'EditarUsuarioView', $data);
+    }
+
     public function delete()
     {
         if($_SERVER['REQUEST_METHOD'] == 'GET')

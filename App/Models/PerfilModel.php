@@ -85,6 +85,18 @@ class PerfilModel
     }
 
     /**
+     * Função Responsável por Buscar o perfil do usuario
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     */
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM perfil_usuario WHERE id_usuario = :id_usuario");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    /**
      * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
      * @author: Marcos Conde
      * @created: 31/12/2024

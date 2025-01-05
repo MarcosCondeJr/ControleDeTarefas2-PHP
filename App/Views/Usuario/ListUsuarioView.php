@@ -52,7 +52,7 @@
                                 <td><?php echo $usuario['telefone_usuario'] ?></td>
                                 <td><?php echo $usuario['nm_tipo']?></td>
                                 <td>
-                                    <form action="<?= BASE_URL ?>#" method="GET" style ="display: inline-flex">
+                                    <form action="<?= BASE_URL ?>/editar-usuario" method="GET" style ="display: inline-flex">
                                         <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                         <button type="submit" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
