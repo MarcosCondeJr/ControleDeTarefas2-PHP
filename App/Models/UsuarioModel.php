@@ -115,7 +115,9 @@ class UsuarioModel
                 JOIN
                     perfil_usuario AS pf ON pf.id_usuario = us.id_usuario
                 JOIN
-                    tipo_usuario AS tp ON tp.id_tipousuario = us.id_tipousuario";
+                    tipo_usuario AS tp ON tp.id_tipousuario = us.id_tipousuario
+                ORDER BY 
+                    cd_usuario";
 
         $stmt =$this->db->query($sql);
         return $stmt->fetchAll();
@@ -154,5 +156,44 @@ class UsuarioModel
     {
         $stmt = $this->db->prepare("DELETE FROM usuarios WHERE id_usuario = :id_usuario");
         return $stmt->execute([$id]);
+    }
+
+    /**
+     * Função Responsável por editar um usuário
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     * @param: object da senha, para validar se foi inserido senha ou não, para salvar uma nova senha
+     */
+    public function update($senha)
+    {
+        $sql = "UPDATE usuarios
+            SET id_usuario = :id_usuario, nm_usuario = :nm_usuario, email_usuario = :email_usuario, id_tipousuario = :id_tipousuario";
+
+        //Se caso digitar uma nova senha, ele cria um hash da nova senha
+        if(!empty(trim($senha)))
+        {
+            $sql .= ", senha_usuario = :senha_usuario WHERE id_usuario = :id_usuario";
+
+            $senhaHash = password_hash($this->getSenha(), PASSWORD_DEFAULT);
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id_usuario", $this->getIdUsuario());
+            $stmt->bindValue(":nm_usuario", $this->getNmUsuario());
+            $stmt->bindValue(":email_usuario", $this->getEmail());
+            $stmt->bindValue(":senha_usuario", $senhaHash);
+            $stmt->bindValue(":id_tipousuario", $this->getTipoUsuario()->getIdTipoUsuario());
+        }
+        else 
+        {
+            $sql .= " WHERE id_usuario = :id_usuario";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":id_usuario", $this->getIdUsuario());
+            $stmt->bindValue(":nm_usuario", $this->getNmUsuario());
+            $stmt->bindValue(":email_usuario", $this->getEmail());
+            $stmt->bindValue(":id_tipousuario", $this->getTipoUsuario()->getIdTipoUsuario());
+        }
+        $stmt->execute();
+        return $this->getIdUsuario();
     }
 } 

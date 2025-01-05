@@ -112,4 +112,25 @@ class UsuarioController
             }
         }
     }
+
+    public function update()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $object = json_decode(json_encode($_POST));
+
+            try
+            {       
+                $this->service->update($object);
+                $sucesso = true;
+                RenderView::loadView('Usuario', 'EditarUsuarioView', ['sucesso' => $sucesso]);
+                exit();
+            }
+            catch (Exception $e)
+            {
+                $error = $e->getMessage();
+            }
+        }
+        RenderView::loadView('Usuario', 'EditarUsuarioView', ['error' => $error]);
+    }
 }

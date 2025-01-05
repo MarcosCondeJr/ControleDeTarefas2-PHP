@@ -152,4 +152,24 @@ class PerfilModel
         $stmt = $this->db->prepare("DELETE FROM perfil_usuario WHERE id_usuario = :id_usuario");
         return $stmt->execute([$id]);
     }
+
+    /**
+     * Função Responsável por editar um perfil
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     */
+    public function update()
+    {
+        $sql = "UPDATE perfil_usuario
+            SET id_usuario = :id_usuario, cd_usuario = :cd_usuario, nm_completo = :nm_completo, telefone_usuario = :telefone_usuario, ds_usuario = :ds_usuario
+            WHERE id_usuario = :id_usuario";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id_usuario", $this->getIdUsuario()->getIdUsuario());
+        $stmt->bindValue(":cd_usuario", $this->getCdUsuario());
+        $stmt->bindValue(":nm_completo", $this->getNmCompleto());
+        $stmt->bindValue(":telefone_usuario", $this->getTelefone());
+        $stmt->bindValue(":ds_usuario", $this->getDsUsuario());
+        $stmt->execute();
+    }
 } 

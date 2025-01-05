@@ -14,7 +14,7 @@
             Voltar
         </button>
         <div class="mt-4">
-            <form action="<?= BASE_URL ?>/#" id="formUsuario" method="POST">
+            <form action="<?= BASE_URL ?>/update-usuario" id="formUsuario" method="POST">
                 <h1 class="mb-4">Editar Usuário</h1>
                 <div class="row mb-3">
                     <div class="col-sm-1">
@@ -71,7 +71,8 @@
                         <textarea class="form-control" name="ds_usuario"><?= $_POST['ds_usuario'] ?? $perfil['ds_usuario'] ?></textarea>
                     </div>
                 </div>
-                <input type="hidden" name="id_usuario">
+                <input type="hidden" name="id_usuario" value="<?= $usuario['id_usuario'] ?? $_POST['id_usuario'] ?>">
+                <button type="button" class="btn btn-danger" id="cancelarButton">Cancelar</button>
                 <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
             </form>
         </div>
@@ -92,9 +93,9 @@
             }
         });
 
-        document.getElementById('confirmarSenha').addEventListener('input', function () {
-            this.classList.remove('is-invalid');
-        });
+        // document.getElementById('confirmarSenha').addEventListener('input', function () {
+        //     this.classList.remove('is-invalid');
+        // });
 
         // Mascara de input telefone
         function aplicarMascaraTelefone(event) {
@@ -118,7 +119,7 @@
             window.onload = function() {
                 Swal.fire({
                 title: "Sucesso!",
-                text: "Usuário Cadastrado!",
+                text: "Usuário Atualizado!",
                 icon: "success",
                 confirmButtonText: 'Ok'
                 }).then((result) => {
@@ -146,5 +147,27 @@
         </script>
     <?php endif; ?>
 
+    <!-- Alert de Cancelar edição -->
+    <script>
+        document.getElementById('cancelarButton').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Cancelar edição?',
+                text: "Todas as alterações não salvas serão perdidas.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Sim',
+                confirmButtonColor: '#0d6efd',
+                cancelButtonText: 'Não',
+                cancelButtonColor: '#d33',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?= BASE_URL ?>/usuarios";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
