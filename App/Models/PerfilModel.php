@@ -85,6 +85,18 @@ class PerfilModel
     }
 
     /**
+     * Função Responsável por Buscar o perfil do usuario
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     */
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM perfil_usuario WHERE id_usuario = :id_usuario");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    /**
      * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
      * @author: Marcos Conde
      * @created: 31/12/2024
@@ -108,6 +120,11 @@ class PerfilModel
         return $stmt->fetch();
     }
 
+    /**
+     * Função Responsável por criar o perfil do usuário
+     * @author: Marcos Conde
+     * @created: 01/01/2025
+     */
     public function create()
     {
         $sql = "INSERT INTO perfil_usuario (cd_usuario, id_usuario, nm_completo, telefone_usuario, ds_usuario)
@@ -121,6 +138,38 @@ class PerfilModel
         $stmt->bindValue(":telefone_usuario", $this->getTelefone());
         $stmt->bindValue(":ds_usuario", $this->getDsUsuario());
 
+        $stmt->execute();
+    }
+
+    /**
+     * Função Responsável por deletar um perfil
+     * @author: Marcos Conde
+     * @created: 04/01/2025
+     * param: id do usuário
+     */
+    public function delete($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM perfil_usuario WHERE id_usuario = :id_usuario");
+        return $stmt->execute([$id]);
+    }
+
+    /**
+     * Função Responsável por editar um perfil
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     */
+    public function update()
+    {
+        $sql = "UPDATE perfil_usuario
+            SET id_usuario = :id_usuario, cd_usuario = :cd_usuario, nm_completo = :nm_completo, telefone_usuario = :telefone_usuario, ds_usuario = :ds_usuario
+            WHERE id_usuario = :id_usuario";
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id_usuario", $this->getIdUsuario()->getIdUsuario());
+        $stmt->bindValue(":cd_usuario", $this->getCdUsuario());
+        $stmt->bindValue(":nm_completo", $this->getNmCompleto());
+        $stmt->bindValue(":telefone_usuario", $this->getTelefone());
+        $stmt->bindValue(":ds_usuario", $this->getDsUsuario());
         $stmt->execute();
     }
 } 

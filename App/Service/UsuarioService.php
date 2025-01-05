@@ -26,64 +26,55 @@ class UsuarioService
      * Função Responsável pela a regra de negócio e a criação de usuarios
      * @author: Marcos Conde
      * @created: 02/01/2025
-     * $param: array com os campos do formulario;
+     * $param: objeto com os valores do formulário;
      */
-    public function create($data)
+    public function create($object)
     {
-        $cdUsuario      = $data['cd_usuario'] ?? null;
-        $idTipousuario  = $data['id_tipousuario'] ?? null;
-        $email          = $data['email_usuario'] ?? null;
-        $nmUsuario      = $data['nm_usuario'] ?? null;
-        $senha          = $data['confirmar_senha'] ?? null;
-        $nmCompleto     = $data['nm_completo'] ?? null;
-        $telefone       = $data['telefone_usuario'] ?? null;
-        $descricao      = $data['ds_usuario'] ?? null;
-
         //Validações 
-        if(empty(trim($nmUsuario)))
+        if(empty(trim($object->nm_usuario)))
         {
             throw new Exception("O Nome de Usuário é obrigatório!");
         }
-        if(empty(trim($nmCompleto)))
+        if(empty(trim($object->nm_completo)))
         {
             throw new Exception("O Nome Completo é obrigatório!");
         }
-        if(empty(trim($email)))
+        if(empty(trim($object->email_usuario)))
         {
             throw new Exception("O Email é obrigatório!");
         }
         
-        if(empty($telefone) )
+        if(empty($object->telefone_usuario) )
         {
             throw new Exception("O Telefone é obrigatório!");
         }
-        else if(strlen($telefone) < 15)
+        else if(strlen($object->telefone_usuario) < 15)
         {
             throw new Exception("O Telefone está incompleto!");
         }
 
-        if(!is_numeric($idTipousuario))
+        if(!is_numeric($object->id_tipousuario))
         {
             throw new Exception("O Tipo de Usuário é obrigatório!");
         }
 
-        if(empty(trim($senha)))
+        if(empty(trim($object->senha)))
         {
             throw new Exception("A Senha é obrigatório!");
         }
-        else if(strlen($senha) < 8)
+        else if(strlen($object->senha) < 8)
         {
             throw new Exception("A Senha precisa ter 8 caracteres!");
         }
 
         //Atribui os valores da table usuario.
         $tipoUsuario = new TipoUsuarioModel($this->db);
-        $tipoUsuario = $tipoUsuario->getById($idTipousuario);
+        $tipoUsuario = $tipoUsuario->getById($object->id_tipousuario);
 
         $this->usuario->setTipoUsuario($tipoUsuario);
-        $this->usuario->setNmUsuario($nmUsuario);
-        $this->usuario->setEmail($email);
-        $this->usuario->setSenha($senha);
+        $this->usuario->setNmUsuario($object->nm_usuario);
+        $this->usuario->setEmail($object->email_usuario);
+        $this->usuario->setSenha($object->senha);
         
         //Salva um Usuario
         $idUsuario = $this->usuario->create();
@@ -93,12 +84,80 @@ class UsuarioService
         $idUsuario = $usuario->getById($idUsuario);
         
         $this->perfilUsuario->setIdUsuario($idUsuario);
-        $this->perfilUsuario->setCdUsuario($cdUsuario);
-        $this->perfilUsuario->setNmCompleto($nmCompleto);
-        $this->perfilUsuario->setTelefone($telefone);
-        $this->perfilUsuario->setDsUsuario($descricao);
+        $this->perfilUsuario->setCdUsuario($object->cd_usuario);
+        $this->perfilUsuario->setNmCompleto($object->nm_completo);
+        $this->perfilUsuario->setTelefone($object->telefone_usuario);
+        $this->perfilUsuario->setDsUsuario($object->ds_usuario);
 
         //Salva o perfil
         $this->perfilUsuario->create();
+    }
+
+    /**
+     * Função Responsável pela a regra de negócio e a edição de usuarios
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     * $param: objeto com os valores do formulário;
+     */
+    public function update($object)
+    {
+        //Validações 
+        if(empty(trim($object->nm_usuario)))
+        {
+            throw new Exception("O Nome de Usuário é obrigatório!");
+        }
+        if(empty(trim($object->nm_completo)))
+        {
+            throw new Exception("O Nome Completo é obrigatório!");
+        }
+        if(empty(trim($object->email_usuario)))
+        {
+            throw new Exception("O Email é obrigatório!");
+        }
+        
+        if(empty($object->telefone_usuario) )
+        {
+            throw new Exception("O Telefone é obrigatório!");
+        }
+        else if(strlen($object->telefone_usuario) < 15)
+        {
+            throw new Exception("O Telefone está incompleto!");
+        }
+
+        if(!is_numeric($object->id_tipousuario))
+        {
+            throw new Exception("O Tipo de Usuário é obrigatório!");
+        }
+
+        //Atribui os valores da table usuario.
+        $tipoUsuario = new TipoUsuarioModel($this->db);
+        $tipoUsuario = $tipoUsuario->getById($object->id_tipousuario);
+        
+        $this->usuario->setIdUsuario($object->id_usuario);
+        $this->usuario->setTipoUsuario($tipoUsuario);
+        $this->usuario->setNmUsuario($object->nm_usuario);
+        $this->usuario->setEmail($object->email_usuario);
+
+        //Se o inserir uma nova senha, ele atribui a senha nova
+        if(!empty(trim($object->senha)))
+        {
+            $this->usuario->setSenha($object->senha);   
+        }
+        
+        //Atualiza o Usuario
+        $idUsuario = $this->usuario->update($object->senha);
+        
+        //Atribui os valores na model de Perfil Usuário
+        $usuario = new UsuarioModel($this->db);
+        $idUsuario = $usuario->getById($idUsuario);
+        
+        $this->perfilUsuario->setIdUsuario($idUsuario);
+        $this->perfilUsuario->setCdUsuario($object->cd_usuario);
+        $this->perfilUsuario->setNmCompleto($object->nm_completo);
+        $this->perfilUsuario->setTelefone($object->telefone_usuario);
+        $this->perfilUsuario->setDsUsuario($object->ds_usuario);
+
+        //Atualiza o perfil
+        $this->perfilUsuario->update();
     }
 }

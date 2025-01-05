@@ -52,15 +52,15 @@
                                 <td><?php echo $usuario['telefone_usuario'] ?></td>
                                 <td><?php echo $usuario['nm_tipo']?></td>
                                 <td>
-                                    <form action="<?= BASE_URL ?>#" method="GET" style = "display: inline-flex">
-                                        <input type="hidden" name="id_categoria" value="">
+                                    <form action="<?= BASE_URL ?>/editar-usuario" method="GET" style ="display: inline-flex">
+                                        <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                         <button type="submit" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                             Editar
                                         </button>
                                     </form>
-                                    <form action="<?= BASE_URL ?>#" method="POST" id="deleteForm" style = "display: inline-flex">
-                                        <input type="hidden" name="id_categoria" value="">
+                                    <form action="<?= BASE_URL ?>/delete-usuario" method="GET" id="deleteForm" style ="display: inline-flex">
+                                        <input type="hidden" name="id_usuario" value="<?= htmlspecialchars($usuario['id_usuario']) ?>">
                                         <button type="submit" class="btn btn-danger deleteButton">
                                             <i class="bi bi-trash"></i>
                                             Deletar
@@ -78,5 +78,38 @@
             </table>
         </div>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+
+    <script>
+        const deleteButtons = document.querySelectorAll('.deleteButton');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                const form = this.closest('form');
+                const formAction = form.action;
+
+                Swal.fire({
+                    title: 'Tem certeza?',
+                    text: "Você não poderá reverter isso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sim',
+                    confirmButtonColor: '#0d6efd',
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    } else {
+                        
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

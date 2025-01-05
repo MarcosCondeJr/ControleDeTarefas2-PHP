@@ -57,11 +57,11 @@ class UsuarioController
         
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
-            $data = $_POST;
+            $object = json_decode(json_encode($_POST));
 
             try
             {
-                $this->service->create($data);
+                $this->service->create($object);
                 $sucesso = true;
                 RenderView::loadView('Usuario', 'CadastroUsuarioView', ['sucesso' => $sucesso] );
                 exit();
@@ -72,5 +72,65 @@ class UsuarioController
             }
         }
         RenderView::loadView('Usuario', 'CadastroUsuarioView', ['error' => $error, 'tipoUsuario' => $tipoUsuario]);
+    }
+
+    public function updateView()
+    {
+        $tipoUsuario = $this->tipoUsuario->getAll();
+
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $idUsuario = $_GET['id_usuario'];
+            $usuario = $this->usuario->getByUsuario($idUsuario);
+            $perfil = $this->perfilUsuario->getById($idUsuario);
+
+            $data = [
+                'usuario' => $usuario,
+                'perfil' => $perfil,
+                'tipoUsuario' => $tipoUsuario
+            ];
+        }
+        RenderView::loadView('Usuario', 'EditarUsuarioView', $data);
+    }
+
+    public function delete()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $idUsuario = $_GET['id_usuario'];
+            try
+            {
+                $this->perfilUsuario->delete($idUsuario);
+                $this->usuario->delete($idUsuario);
+
+                header("Location: " . BASE_URL . "/usuarios");
+                exit();
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erro ao deletar a categoria: ' . $e->getMessage());
+            }
+        }
+    }
+
+    public function update()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $object = json_decode(json_encode($_POST));
+
+            try
+            {       
+                $this->service->update($object);
+                $sucesso = true;
+                RenderView::loadView('Usuario', 'EditarUsuarioView', ['sucesso' => $sucesso]);
+                exit();
+            }
+            catch (Exception $e)
+            {
+                $error = $e->getMessage();
+            }
+        }
+        RenderView::loadView('Usuario', 'EditarUsuarioView', ['error' => $error]);
     }
 }
