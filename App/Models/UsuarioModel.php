@@ -196,4 +196,48 @@ class UsuarioModel
         $stmt->execute();
         return $this->getIdUsuario();
     }
+
+    /**
+     * Função Responsável por buscar usuario pelo filtro inserido no campo de busca
+     * @author: Marcos Conde
+     * @created: 05/01/2025
+     * @param: filtro da consulta
+     */
+    public function search($filtro)
+    {
+        $sql = "SELECT
+                    us.id_usuario,
+                    pf.cd_usuario,
+                    us.nm_usuario,
+                    us.email_usuario,
+                    pf.telefone_usuario,
+                    tp.nm_tipo
+                FROM
+                    usuarios AS us
+                JOIN
+                    perfil_usuario AS pf ON pf.id_usuario = us.id_usuario
+                JOIN
+                    tipo_usuario AS tp ON tp.id_tipousuario = us.id_tipousuario
+                WHERE ";
+        
+        if(is_numeric($filtro))
+        {
+            $sql .= "cd_usuario = :filtro";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":filtro", $filtro);
+            $stmt->execute();
+        }
+        else
+        {
+            $sql .= "nm_usuario ILIKE :likeFiltro OR
+                     email_usuario ILIKE :likeFiltro OR
+                     nm_tipo ILIKE :likeFiltro";
+            
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":likeFiltro", "%{$filtro}%");
+            $stmt->execute();
+        }
+        return $stmt->fetchAll();
+    }
 } 

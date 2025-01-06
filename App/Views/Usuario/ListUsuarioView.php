@@ -17,7 +17,7 @@
             <h1>Lista de Usuários</h1>
         </div>
         <div class="form-group d-flex align-items-center mt-4">
-            <form action="#" method="GET" class="d-flex align-items-center">
+            <form action="<?= BASE_URL ?>/usuario-search" method="GET" class="d-flex align-items-center">
                 <input type="text" class="form-control me-1" name="filtro" value="<?= $_GET['filtro'] ?? '' ?>" placeholder="Consulta">
                 <button type="button" class="btn btn-danger d-flex align-items-center" onclick="window.location.href='<?= BASE_URL ?>/usuarios'"><i class="bi bi-eraser-fill"></i></button>
                 <button type="submit" class="btn btn-primary d-flex align-items-center ms-1">
