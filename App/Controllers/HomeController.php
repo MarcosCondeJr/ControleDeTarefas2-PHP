@@ -14,4 +14,9 @@ class HomeController
     {
         RenderView::loadView('Login','LoginPage', []);
     }
+
+    public function login()
+    {
+        
+    }
 }

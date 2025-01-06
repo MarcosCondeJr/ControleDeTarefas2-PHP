@@ -2,6 +2,7 @@
 
 $routes = [
     '/' => 'HomeController@LoginView',
+    '/login' => 'HomeController@Login',
     '/home' => 'HomeController@index',
 
     //Rotas da Categoria
