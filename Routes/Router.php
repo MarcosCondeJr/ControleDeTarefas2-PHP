@@ -19,5 +19,6 @@ $routes = [
     '/create-usuario' => 'UsuarioController@create',
     '/delete-usuario' => 'UsuarioController@delete',
     '/editar-usuario' => 'UsuarioController@updateView',
-    '/update-usuario' => 'UsuarioController@update'
+    '/update-usuario' => 'UsuarioController@update',
+    '/usuario-search' => 'UsuarioController@search'
 ];

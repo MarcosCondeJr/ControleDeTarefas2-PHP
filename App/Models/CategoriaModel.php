@@ -188,5 +188,4 @@ class CategoriaModel
         }
         return $stmt->fetchAll();
     }
-
 }
