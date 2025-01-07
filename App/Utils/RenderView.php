@@ -17,7 +17,7 @@ class RenderView
         }
         else
         {
-            $error = 'Acesso negado. Por favor, faça login para continuar.';
+            $error = 'Acesso negado. Por favor, faça login para continuar!';
             self::loadLogin('Login', 'LoginPage', ['error' => $error]);
             exit;
         }
