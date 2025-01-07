@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <div class="mt-5">
-            <h3>Olá Sr Marcos, seja Bem Vindo!</h3>
+            <h3>Olá Sr <?= $_SESSION['usuario'] ?>, seja Bem Vindo!</h3>
         </div>
     </div>
 </body>
