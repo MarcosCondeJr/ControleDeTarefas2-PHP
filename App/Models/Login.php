@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Models;
-use App\Models\UsuarioModel;
-use App\Config\Connection;
 use PDO;
 
 class Login 
@@ -12,7 +10,6 @@ class Login
     public function __construct(PDO $db) 
     {
         $this->db = $db;
-        $this->usuario = new UsuarioModel($this->db);
     }
 
     public function validaLogin($email, $senha)
