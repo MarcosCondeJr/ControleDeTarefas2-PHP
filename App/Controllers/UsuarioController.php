@@ -133,4 +133,22 @@ class UsuarioController
         }
         RenderView::loadView('Usuario', 'EditarUsuarioView', ['error' => $error]);
     }
+
+    public function search()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $filtro = $_GET['filtro'] ?? null;
+
+            if($filtro != '')
+            {
+                $usuarios = $this->usuario->search($filtro);
+            }
+            else
+            {
+                $usuarios = $this->usuario->getAll();
+            }
+        }
+        RenderView::loadView('Usuario', 'ListUsuarioView', ['usuarios' => $usuarios]);
+    }
 }

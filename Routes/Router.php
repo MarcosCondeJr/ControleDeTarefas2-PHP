@@ -1,8 +1,10 @@
 <?php
 
 $routes = [
-    '/' => 'HomeController@LoginView',
-    '/home' => 'HomeController@index',
+    '/' => 'LoginController@LoginView',
+    '/login' => 'LoginController@Login',
+    '/logout' => 'LoginController@LogOut',
+    '/home' => 'LoginController@index',
 
     //Rotas da Categoria
     '/categoria' => 'CategoriaController@index',
@@ -19,5 +21,6 @@ $routes = [
     '/create-usuario' => 'UsuarioController@create',
     '/delete-usuario' => 'UsuarioController@delete',
     '/editar-usuario' => 'UsuarioController@updateView',
-    '/update-usuario' => 'UsuarioController@update'
+    '/update-usuario' => 'UsuarioController@update',
+    '/usuario-search' => 'UsuarioController@search'
 ];

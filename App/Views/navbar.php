@@ -34,7 +34,7 @@
                                 <a href="#" class="dropdown-item">Meu Perfil</a>
                             </li>
                             <li>
-                                <a href="<?= BASE_URL ?>/" class="dropdown-item">Logout</a>
+                                <a href="<?= BASE_URL ?>/logout" class="dropdown-item">Logout</a>
                             </li>
                         </ul>
                     </div>
