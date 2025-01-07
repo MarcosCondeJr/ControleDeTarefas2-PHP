@@ -29,7 +29,6 @@ class RenderView
             session_start();
         }
     
-        session_destroy();
         extract($data);
         require_once __DIR__ . "/../Views/{$pasta}/{$view}.php";
     }

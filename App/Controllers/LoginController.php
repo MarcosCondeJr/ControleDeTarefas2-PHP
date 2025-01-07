@@ -39,7 +39,7 @@ class LoginController
                 $object = json_decode(json_encode($_POST));
                 $this->service->login($object);
 
-                self::index();
+                header("Location: ". BASE_URL ."/home"); 
             }
             catch(Exception $e)
             {
@@ -51,6 +51,14 @@ class LoginController
 
     public function logOut()
     {
-        RenderView::loadLogin('Login','LoginPage');
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        unset($_SESSION['auth']);
+        unset($_SESSION['usuario']);
+        session_destroy();
+    
+        header("Location: ". BASE_URL ."/login");  // Altere a URL conforme necessário para o seu sistema
+        exit;
     }
 }
