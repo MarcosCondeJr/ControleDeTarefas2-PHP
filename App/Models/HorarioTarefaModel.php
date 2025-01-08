@@ -3,7 +3,7 @@
 namespace App\Models;
 use PDO;
 
-class HorarioTarefa
+class HorarioTarefaModel
 {
     private $idHorario;
     private $tarefa;

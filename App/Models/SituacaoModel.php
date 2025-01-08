@@ -2,7 +2,6 @@
 
 namespace App\Models;
 use PDO;
-use App\Config\Connection;
 
 class SituacaoModel 
 {
@@ -51,8 +50,8 @@ class SituacaoModel
         if ($result)
          {
             $situacao = new SituacaoModel($this->db);
-            $situacao->setIdTipoUsuario($result['id_tipousuario']);
-            $situacao->setNmTipo($result['nm_tipo']);
+            $situacao->setIdSituacao($result['id_situacao']);
+            $situacao->setNmSituacao($result['nm_situacao']);
   
             return $situacao;
         }
