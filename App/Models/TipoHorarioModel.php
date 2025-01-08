@@ -13,7 +13,7 @@ class TipoHorarioModel
     {
         $this->db = $db;
     }
-
+    
     public function getIdTipoHorario()
     {
         return $this->idTipoHorario;
