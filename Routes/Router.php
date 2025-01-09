@@ -22,5 +22,10 @@ $routes = [
     '/delete-usuario' => 'UsuarioController@delete',
     '/editar-usuario' => 'UsuarioController@updateView',
     '/update-usuario' => 'UsuarioController@update',
-    '/usuario-search' => 'UsuarioController@search'
+    '/usuario-search' => 'UsuarioController@search',
+
+    //Rotas de Tarefa
+    '/tarefas' => 'TarefaController@index',
+    '/cadastro-tarefa' => 'TarefaController@createView',
+    '/create-tarefa' => 'TarefaController@create'
 ];
