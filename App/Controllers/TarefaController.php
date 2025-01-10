@@ -10,6 +10,6 @@ class TarefaController
 {
     public function index()
     {
-        
+        RenderView::loadView('Tarefa','ListTarefaView', []);
     }
 }
