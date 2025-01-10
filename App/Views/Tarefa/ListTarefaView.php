@@ -25,7 +25,7 @@
                     <i class="bi bi-search ms-1"></i>
                 </button>
             </form>
-            <button class="btn btn-success ms-2" onclick="window.location.href='<?= BASE_URL ?>#'">
+            <button class="btn btn-success ms-2" onclick="window.location.href='<?= BASE_URL ?>/cadastro-tarefa'">
                 Cadastrar
                 <i class="bi bi-plus-circle ms-1"></i>
             </button>

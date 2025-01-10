@@ -12,4 +12,9 @@ class TarefaController
     {
         RenderView::loadView('Tarefa','ListTarefaView', []);
     }
+
+    public function createView()
+    {
+        RenderView::loadView('Tarefa','CadastroTarefaView', []);
+    }
 }
