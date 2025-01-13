@@ -10,18 +10,18 @@
 </head>
 <body>
     <div class="container">
-        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/categoria'">
+        <button type="submit" class="btn mt-3 ps-1 fs-5" onclick="window.location.href='<?= BASE_URL ?>/tarefas'">
             <i class="bi bi-arrow-left-circle"></i>
             Voltar
         </button>
-        <form action="<?= BASE_URL ?>/create-categoria" method="POST">
+        <form action="<?= BASE_URL ?>/create-tarefa" method="POST">
             <h1 class="mt-3 mb-3">Cadastro de Tarefa</h1>
             <div class="row">
-                <div class="col-sm-2 mb-3">
+                <div class="col-sm-1 mb-3">
                     <label for="codigo_tarefa" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>" readonly>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? '' ?>" readonly>
                 </div>
-                <div class="col mb-3">
+                <div class="col-sm-5 mb-3">
                     <label for="titulo_tarefa" class="form-label required">Titulo</label>
                     <input type="text" class="form-control" name="titulo_categoria" value="<?= $_POST['titulo_categoria'] ?? '' ?>">
                 </div>
@@ -31,7 +31,14 @@
                             <option></option>
                                     <option value="">
                         </select>
-                    </div>
+                </div>
+                <div class="col">
+                        <label for="" class="form-label required">Categoria</label>
+                        <select class="form-select" name="id_usuario">
+                            <option></option>
+                                    <option value="">
+                        </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col mb-4">

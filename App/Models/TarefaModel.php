@@ -84,4 +84,18 @@ class TarefaModel
     {
         $this->dsTarefa = $dsTarefa;
     }
+
+    public function create()
+    {
+        $sql = "INSERT INTO tarefas (cd_tarefa, id_usuario, id_categoria, id_situacao, ds_tarefa) 
+                VALUES (:cd_tarefa, :id_usuario, :id_categoria, :id_situacao, :ds_tarefa)";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":cd_tarefa", $this->getCdTarefa());
+        $stmt->bindValue(":id_usuario", $this->getUsuario()->getIdUsuario());
+        $stmt->bindValue(":id_categoria", $this->getCategoria()->getIdCategoria());
+        $stmt->bindValue(":id_situacao", $this->getSituacao()->getIdSituacao());
+        $stmt->bindValue(":ds_tarefa", $this->getDsTarefa());
+        $stmt->execute();
+    }
 }
