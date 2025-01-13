@@ -18,15 +18,15 @@
             <h1 class="mt-3 mb-3">Cadastro de Tarefa</h1>
             <div class="row">
                 <div class="col-sm-1 mb-3">
-                    <label for="codigo_tarefa" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>" readonly>
+                    <label for="cd_tarefa" class="form-label">Código</label>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_tarefa" value="<?= $_POST['cd_tarefa'] ?? $codigo ?>" readonly>
                 </div>
                 <div class="col-sm-5 mb-3">
                     <label for="titulo_tarefa" class="form-label required">Titulo</label>
-                    <input type="text" class="form-control" name="titulo_categoria" value="<?= $_POST['titulo_categoria'] ?? '' ?>">
+                    <input type="text" class="form-control" name="titulo_tarefa" value="<?= $_POST['titulo_tarefa'] ?? '' ?>">
                 </div>
                 <div class="col">
-                        <label for="" class="form-label required">Responsável</label>
+                        <label for="id_usuario" class="form-label required">Responsável</label>
                         <select class="form-select" name="id_usuario">
                         <option></option>
                                 <?php foreach ($usuarios as $usuario): ?>
@@ -42,8 +42,8 @@
                         </select>
                 </div>
                 <div class="col">
-                        <label for="" class="form-label required">Categoria</label>
-                        <select class="form-select" name="id_usuario">
+                        <label for="id_categoria" class="form-label required">Categoria</label>
+                        <select class="form-select" name="id_categoria">
                         <option></option>
                                 <?php foreach ($categorias as $cat): ?>
                                     <option value="<?= $cat['id_categoria'] ?? $_POST['id_categoria'] ?>"

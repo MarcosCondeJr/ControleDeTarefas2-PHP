@@ -59,13 +59,17 @@ class TarefaController
 
             try
             {
-                
+                $this->service->create($object);
+                $sucesso = true;
+                RenderView::loadView('Tarefa', 'CadastroTarefaView', ['sucesso' => $sucesso]);
+                exit();
             }
             catch (Exception $e)
             {
-                $error = $e->getMessage();
+                echo $e->getMessage();
             }
         }
+        RenderView::loadView('Tarefa', 'CadastroTarefaView', ['error' => $error]);
     }
 
 }
