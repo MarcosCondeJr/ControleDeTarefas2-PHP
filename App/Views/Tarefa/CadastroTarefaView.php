@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-sm-1 mb-3">
                     <label for="codigo_tarefa" class="form-label">Código</label>
-                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? '' ?>" readonly>
+                    <input style="background-color:rgb(232, 231, 231)" type="text" class="form-control" name="cd_categoria" value="<?= $_POST['cd_categoria'] ?? $codigo ?>" readonly>
                 </div>
                 <div class="col-sm-5 mb-3">
                     <label for="titulo_tarefa" class="form-label required">Titulo</label>
@@ -28,15 +28,33 @@
                 <div class="col">
                         <label for="" class="form-label required">Responsável</label>
                         <select class="form-select" name="id_usuario">
-                            <option></option>
-                                    <option value="">
+                        <option></option>
+                                <?php foreach ($usuarios as $usuario): ?>
+                                    <option value="<?= $usuario['id_usuario'] ?? $_POST['id_usuario'] ?>"
+                                        <?php 
+                                            if (isset($_POST['id_usuario']) && $usuario['id_usuario'] == $_POST['id_usuario']) {
+                                                echo 'selected';
+                                            }
+                                        ?>>
+                                        <?= $usuario['nm_usuario'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                         </select>
                 </div>
                 <div class="col">
                         <label for="" class="form-label required">Categoria</label>
                         <select class="form-select" name="id_usuario">
-                            <option></option>
-                                    <option value="">
+                        <option></option>
+                                <?php foreach ($categorias as $cat): ?>
+                                    <option value="<?= $cat['id_categoria'] ?? $_POST['id_categoria'] ?>"
+                                        <?php 
+                                            if (isset($_POST['id_categoria']) && $cat['id_categoria'] == $_POST['id_categoria']) {
+                                                echo 'selected';
+                                            }
+                                        ?>>
+                                        <?= $cat['nm_categoria'] ?>
+                                    </option>
+                                <?php endforeach; ?>
                         </select>
                 </div>
             </div>

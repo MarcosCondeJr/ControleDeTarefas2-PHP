@@ -85,6 +85,12 @@ class TarefaModel
         $this->dsTarefa = $dsTarefa;
     }
 
+    public function getLastCodigo()
+    {
+        $stmt = $this->db->query("SELECT cd_tarefa FROM tarefas ORDER BY cd_tarefa DESC LIMIT 1");
+        return $stmt->fetch();
+    }  
+
     public function create()
     {
         $sql = "INSERT INTO tarefas (cd_tarefa, id_usuario, id_categoria, id_situacao, ds_tarefa) 
