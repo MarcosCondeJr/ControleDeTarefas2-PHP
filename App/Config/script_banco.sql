@@ -49,6 +49,7 @@ CREATE TABLE situacao (
 CREATE TABLE tarefas (
 	id_tarefa SERIAL NOT NULL,
 	cd_tarefa INT NOT NULL,
+	titulo_tarefa VARCHAR(60) NOT NULL,
 	id_usuario INT NOT NULL,
 	id_categoria INT NOT NULL,
 	id_situacao INT NOT NULL,

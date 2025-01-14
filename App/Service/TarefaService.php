@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Models\SituacaoModel;
+use App\Models\UsuarioModel;
+use App\Models\CategoriaModel;
 use PDO;
 use App\Models\TarefaModel;
 use Exception;
@@ -12,12 +14,16 @@ class TarefaService
     private $db;
     private $tarefa;
     private $situacao;
+    private $usuario;
+    private $categoria;
 
     public function __construct(PDO $db)
     {
         $this->db = $db;
         $this->tarefa = new TarefaModel($this->db);
         $this->situacao = new SituacaoModel($this->db);
+        $this->usuario = new UsuarioModel($this->db);
+        $this->categoria = new CategoriaModel($this->db);
     }
 
     /**
@@ -28,11 +34,7 @@ class TarefaService
      */
     public function create($object)
     {
-        echo '<pre>';
-        var_dump($object);
-        echo '</pre>';
-        $situacao = $this->situacao->getById(1);
-
+        
         if(empty(trim($object->titulo_tarefa)))
         {
             throw new Exception('O campo título é obrigatório');
@@ -45,10 +47,15 @@ class TarefaService
         {
             throw new Exception('O campo categoria é obrigatório');
         }
-
+        
+        $situacao = $this->situacao->getById(1);
+        $usuario = $this->usuario->getById($object->id_usuario);
+        $categoria = $this->categoria->getByCategoria($object->id_categoria);
+        
         $this->tarefa->setCdTarefa($object->cd_tarefa);
-        $this->tarefa->setUsuario($object->id_usuario);
-        $this->tarefa->setCategoria($object->id_categoria);
+        $this->tarefa->setTituloTarefa($object->titulo_tarefa);
+        $this->tarefa->setUsuario($usuario);
+        $this->tarefa->setCategoria($categoria);
         $this->tarefa->setDsTarefa($object->titulo_tarefa);
         $this->tarefa->setSituacao($situacao);
 

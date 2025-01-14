@@ -11,6 +11,7 @@ class TarefaModel
 {
     private $idTarefa;
     private $cdTarefa;
+    private $tituloTarefa;
     private UsuarioModel $usuario;
     private CategoriaModel $categoria;
     private SituacaoModel $situacao;
@@ -43,6 +44,16 @@ class TarefaModel
     public function setCdTarefa($cdTarefa)
     {
         $this->cdTarefa = $cdTarefa;
+    }
+
+    public function getTituloTarefa()
+    {
+        return $this->tituloTarefa;
+    }
+
+    public function setTituloTarefa($tituloTarefa)
+    {
+        $this->tituloTarefa = $tituloTarefa;
     }
 
     public function getUsuario()
@@ -93,12 +104,13 @@ class TarefaModel
 
     public function create()
     {
-        $sql = "INSERT INTO tarefas (cd_tarefa, id_usuario, id_categoria, id_situacao, ds_tarefa) 
-                VALUES (:cd_tarefa, :id_usuario, :id_categoria, :id_situacao, :ds_tarefa)";
+        $sql = "INSERT INTO tarefas (cd_tarefa, id_usuario, titulo_tarefa, id_categoria, id_situacao, ds_tarefa) 
+                VALUES (:cd_tarefa, :id_usuario, :titulo_tarefa, :id_categoria, :id_situacao, :ds_tarefa)";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(":cd_tarefa", $this->getCdTarefa());
         $stmt->bindValue(":id_usuario", $this->getUsuario()->getIdUsuario());
+        $stmt->bindValue(":titulo_tarefa", $this->getTituloTarefa());
         $stmt->bindValue(":id_categoria", $this->getCategoria()->getIdCategoria());
         $stmt->bindValue(":id_situacao", $this->getSituacao()->getIdSituacao());
         $stmt->bindValue(":ds_tarefa", $this->getDsTarefa());
