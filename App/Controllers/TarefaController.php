@@ -53,6 +53,9 @@ class TarefaController
         $sucesso = false;
         $error = null;
 
+        $categorias = $this->categoria->getAll();
+        $usuarios = $this->usuario->getAll();
+
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $object = json_decode(json_encode($_POST));
@@ -69,7 +72,11 @@ class TarefaController
                 echo $e->getMessage();
             }
         }
-        RenderView::loadView('Tarefa', 'CadastroTarefaView', ['error' => $error]);
+        RenderView::loadView('Tarefa', 'CadastroTarefaView', [
+            'error' => $error,
+            'categorias' => $categorias,
+            'usuarios' => $usuarios
+        ]);
     }
 
 }

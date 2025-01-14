@@ -60,12 +60,48 @@
             </div>
             <div class="row">
                 <div class="col mb-4">
-                    <label for="ds_categoria" class="form-label">Descrição</label>
-                    <textarea id="" class="form-control" name="ds_categoria"><?= $_POST['ds_categoria'] ?? '' ?></textarea>
+                    <label for="ds_tarefa" class="form-label">Descrição</label>
+                    <textarea id="" class="form-control" name="ds_tarefa"><?= $_POST['ds_tarefa'] ?? '' ?></textarea>
                 </div>
             </div>
             <button type="submit" class="btn btn-success" id="cad-categoria-btn">Salvar</button>
         </form>
     </div>
+
+    <script src="public/js/sweetAlert2.js"></script>
+    <!-- Alert de Sucesso -->
+
+    <?php if (isset($sucesso)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                title: "Sucesso!",
+                text: "Tarefa Cadastrada!",
+                icon: "success",
+                confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '<?= BASE_URL ?>/tarefas';
+                    } else {
+                        window.location.href = '<?= BASE_URL ?>/tarefas';
+                    }
+                });
+            }
+        </script>
+    <?php endif; ?>
+
+    <!-- Alert de Erro -->
+    <?php if (isset($error)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atenção',
+                    text: '<?= $error ?>',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
 </body>
 </html>

@@ -56,7 +56,7 @@ class TarefaService
         $this->tarefa->setTituloTarefa($object->titulo_tarefa);
         $this->tarefa->setUsuario($usuario);
         $this->tarefa->setCategoria($categoria);
-        $this->tarefa->setDsTarefa($object->titulo_tarefa);
+        $this->tarefa->setDsTarefa($object->ds_tarefa);
         $this->tarefa->setSituacao($situacao);
 
         $this->tarefa->create();
