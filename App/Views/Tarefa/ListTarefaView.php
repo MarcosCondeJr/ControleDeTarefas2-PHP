@@ -38,32 +38,42 @@
                         <th>Titulo</th>
                         <th>Responsável</th>
                         <th>Categoria</th>
-                        <th>Descrição</th>
                         <th>Situação</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>1</td>
+                                <td>Testando</td>
+                                <td>Marcos</td>
+                                <td>Curso</td>
+                                <td>Não iniciada</td>
                                 <td>
+                                    <form action="" style ="display: inline-flex; align-items: center;">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Ação
+                                            </a>
+
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item" href="#">Iniciar</a></li>
+                                                <li><a class="dropdown-item" href="#">Pausar</a></li>
+                                                <li><a class="dropdown-item" href="#">Retomar</a></li>
+                                                <li><a class="dropdown-item" href="#">Finalizar</a></li>
+                                            </ul>
+                                        </div>
+                                    </form>
                                     <form action="<?= BASE_URL ?>#" method="GET" style ="display: inline-flex">
                                         <input type="hidden" name="id_usuario" value="">
                                         <button type="submit" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
-                                            Editar
                                         </button>
                                     </form>
                                     <form action="<?= BASE_URL ?>#" method="GET" id="deleteForm" style ="display: inline-flex">
                                         <input type="hidden" name="id_usuario" value="">
                                         <button type="submit" class="btn btn-danger deleteButton">
                                             <i class="bi bi-trash"></i>
-                                            Deletar
                                         </button>
                                     </form>
                                 </td>
