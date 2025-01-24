@@ -240,4 +240,13 @@ class UsuarioModel
         }
         return $stmt->fetchAll();
     }
+
+    public function verificaDependencia($id)
+    {
+        $sql = "SELECT * FROM tarefas WHERE id_usuario = :id_usuario";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(":id_usuario", $id);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 } 
