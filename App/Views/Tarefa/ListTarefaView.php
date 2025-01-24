@@ -43,12 +43,14 @@
                     </tr>
                 </thead>
                 <tbody class="text-center">
+                    <?php if (!empty($tarefas)): ?>
+                        <?php foreach($tarefas as $taf) : ?>
                             <tr>
-                                <td>1</td>
-                                <td>Testando</td>
-                                <td>Marcos</td>
-                                <td>Curso</td>
-                                <td>Não iniciada</td>
+                                <td><?php echo htmlspecialchars($taf['cd_tarefa']) ?></td>
+                                <td><?php echo htmlspecialchars($taf['titulo_tarefa']) ?></td>
+                                <td><?php echo htmlspecialchars($taf['nm_usuario']) ?></td>
+                                <td><?php echo htmlspecialchars($taf['nm_categoria']) ?></td>
+                                <td><?php echo htmlspecialchars($taf['nm_situacao']) ?></td>
                                 <td>
                                     <form action="" style ="display: inline-flex; align-items: center;">
                                         <div class="dropdown">
@@ -78,9 +80,12 @@
                                     </form>
                                 </td>
                             </tr>
-                        <tr>
-                            <td colspan="5">Nenhum registro encontrado.</td>
-                        </tr>
+                            <?php endforeach;?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6">Nenhum registro encontrado.</td>
+                            </tr>
+                        <?php endif;?>
                 </tbody>
             </table>
         </div>

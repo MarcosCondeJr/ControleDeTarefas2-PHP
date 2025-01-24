@@ -96,6 +96,29 @@ class TarefaModel
         $this->dsTarefa = $dsTarefa;
     }
 
+    public function getAll()
+    {
+        $sql = 
+            "SELECT
+                tf.cd_tarefa,
+                tf.titulo_tarefa,
+                us.nm_usuario,
+                ct.nm_categoria,
+                st.nm_situacao,
+                tf.ds_tarefa
+            FROM
+                tarefas AS tf
+            JOIN
+                usuarios AS us ON us.id_usuario = tf.id_usuario
+            JOIN
+                categoria AS ct ON ct.id_categoria = tf.id_categoria
+            JOIN
+                situacao AS st ON st.id_situacao = tf.id_situacao";
+
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
     public function getLastCodigo()
     {
         $stmt = $this->db->query("SELECT cd_tarefa FROM tarefas ORDER BY cd_tarefa DESC LIMIT 1");

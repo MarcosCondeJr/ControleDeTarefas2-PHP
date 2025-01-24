@@ -27,7 +27,8 @@ class TarefaController
     }
     public function index()
     {
-        RenderView::loadView('Tarefa','ListTarefaView', []);
+        $tarefas = $this->tarefa->getAll();
+        RenderView::loadView('Tarefa','ListTarefaView', ['tarefas' => $tarefas]);
     }
 
     public function createView()
