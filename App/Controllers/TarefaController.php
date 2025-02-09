@@ -7,6 +7,7 @@ use App\Models\CategoriaModel;
 use App\Service\TarefaService;
 use App\Utils\RenderView;
 use App\Config\Connection;
+use App\Enum\TipoHorarioEnum;
 use Exception;
 
 class TarefaController
@@ -28,7 +29,9 @@ class TarefaController
     public function index()
     {
         $tarefas = $this->tarefa->getAll();
-        RenderView::loadView('Tarefa','ListTarefaView', ['tarefas' => $tarefas]);
+        $tipoHorario = TipoHorarioEnum::TIPOHORARIO;
+        RenderView::loadView('Tarefa','ListTarefaView', [ 'tarefas' => $tarefas,
+                                                          'tipoHorario' => $tipoHorario ]);
     }
 
     public function createView()

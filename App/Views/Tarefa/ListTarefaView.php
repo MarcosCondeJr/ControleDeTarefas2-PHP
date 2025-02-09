@@ -1,4 +1,6 @@
-<?php include 'App/Views/navbar.php'; ?>
+<?php include 'App/Views/navbar.php'; 
+    var_dump($tipoHorario);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,13 +59,12 @@
                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                 Ação
                                             </a>
-
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Iniciar</a></li>
-                                                <li><a class="dropdown-item" href="#">Pausar</a></li>
-                                                <li><a class="dropdown-item" href="#">Retomar</a></li>
-                                                <li><a class="dropdown-item" href="#">Finalizar</a></li>
-                                            </ul>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"></a><?php echo $tipoHorario[1] ?></li>
+                                                    <li><a class="dropdown-item" href="#"></a><?php echo $tipoHorario[2] ?></li>
+                                                    <li><a class="dropdown-item" href="#"></a><?php echo $tipoHorario[3] ?></li>
+                                                    <li><a class="dropdown-item" href="#"></a><?php echo $tipoHorario[4] ?></li>
+                                                </ul>
                                         </div>
                                     </form>
                                     <form action="<?= BASE_URL ?>#" method="GET" style ="display: inline-flex">
