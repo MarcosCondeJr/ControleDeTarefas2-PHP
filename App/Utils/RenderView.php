@@ -17,7 +17,7 @@ class RenderView
         }
         else
         {
-            $error = 'Acesso negado. Por favor, faça login para continuar.';
+            $error = 'Acesso negado. Por favor, faça login para continuar!';
             self::loadLogin('Login', 'LoginPage', ['error' => $error]);
             exit;
         }
@@ -29,7 +29,6 @@ class RenderView
             session_start();
         }
     
-        session_destroy();
         extract($data);
         require_once __DIR__ . "/../Views/{$pasta}/{$view}.php";
     }

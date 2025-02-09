@@ -160,4 +160,22 @@ class UsuarioService
         //Atualiza o perfil
         $this->perfilUsuario->update();
     }
+
+    /**
+     * Função Responsável pela a regra de negócio e a exclusão de usuarios
+     * @created: 24/01/2025
+     * $param: id do usuario;
+     */
+    public function delete($id)
+    {
+        $dependencia = $this->usuario->verificaDependencia($id);
+
+        if(!empty($dependencia))
+        {
+            throw new Exception("Não é possivel deletar o usuário pois está vinculado a uma tarefa!");
+        }
+
+        $this->perfilUsuario->delete($id);
+        $this->usuario->delete($id);
+    }
 }

@@ -95,22 +95,28 @@ class UsuarioController
 
     public function delete()
     {
+        $error = null;
+
         if($_SERVER['REQUEST_METHOD'] == 'GET')
         {
             $idUsuario = $_GET['id_usuario'];
+            $usuarios = $this->usuario->getByUsuario($idUsuario);
             try
             {
-                $this->perfilUsuario->delete($idUsuario);
-                $this->usuario->delete($idUsuario);
-
+                $this->service->delete($idUsuario);
                 header("Location: " . BASE_URL . "/usuarios");
                 exit();
             }
             catch(Exception $e)
             {
-                throw new Exception('Erro ao deletar a categoria: ' . $e->getMessage());
+                $error = $e->getMessage();
             }
         }
+        $usuarios = $this->usuario->getAll();
+        RenderView::loadView('Usuario', 'ListUsuarioView', [
+            'usuarios' => $usuarios,
+            'error' => $error
+        ]);
     }
 
     public function update()

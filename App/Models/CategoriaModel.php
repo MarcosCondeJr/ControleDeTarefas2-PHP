@@ -102,6 +102,21 @@ class CategoriaModel
         return $stmt->fetch();
     }
 
+    public function getByCategoria($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM categoria WHERE id_categoria = :id_categoria");
+        $stmt->execute([$id]);
+        $result = $stmt->fetch();
+        
+        if ($result)
+        {
+            $categoria = new CategoriaModel($this->db);
+            $categoria->setIdCategoria($result['id_categoria']);
+            return $categoria;
+        }
+        return null;
+    }
+
     /**
      * Função Responsável por Buscar o ultimo codigo, para gerar o código no cadastro
      * @author: Marcos Conde
