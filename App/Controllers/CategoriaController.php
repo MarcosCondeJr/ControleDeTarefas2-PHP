@@ -63,9 +63,12 @@ class CategoriaController
 
     public function delete()
     {
+        $error = null;
+
         if($_SERVER['REQUEST_METHOD'] == 'POST')
         {
             $id = $_POST['id_categoria'];
+            $categoria = $this->categoria->getById($id);
 
             try
             {
@@ -75,9 +78,14 @@ class CategoriaController
             }
             catch(PDOException $e)
             {
-                throw new Exception('Erro ao deletar a categoria: ' . $e->getMessage());
+                $error = "Não é possivel deletar a categoria ". $categoria['nm_categoria'] . " pois ela está vinculada a uma tarefa!";
             }
         }
+        $categorias = $this->categoria->getAll();
+        RenderView::loadView('Categoria', 'ListCategoriaView', [
+            'categorias' => $categorias,
+            'error' => $error
+        ]);
     }
 
     public function updateView()

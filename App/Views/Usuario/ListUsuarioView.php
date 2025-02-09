@@ -71,7 +71,7 @@
                         <?php endforeach;?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="5">Nenhum registro encontrado.</td>
+                            <td colspan="6">Nenhum registro encontrado.</td>
                         </tr>
                     <?php endif;?>
                 </tbody>
@@ -111,5 +111,19 @@
             });
         });
     </script>
+
+    <!-- Alert de Erro -->
+    <?php if (isset($error)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atenção',
+                    text: '<?= $error ?>',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
 </body>
 </html>

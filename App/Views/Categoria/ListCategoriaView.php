@@ -107,5 +107,20 @@
             });
         });
 </script>
+
+    <!-- Alert de Erro -->
+    <?php if (isset($error)): ?>
+        <script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Atenção',
+                    text: '<?= $error ?>',
+                    confirmButtonText: 'Ok'
+                });
+            }
+        </script>
+    <?php endif; ?>
+
 </body>
 </html>
