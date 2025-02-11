@@ -103,4 +103,8 @@ class TarefaController
         }
     }
 
+    public function update()
+    {
+        echo "EM Andamento";
+    }
 }
