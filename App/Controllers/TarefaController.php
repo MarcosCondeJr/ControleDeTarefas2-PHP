@@ -83,4 +83,24 @@ class TarefaController
         ]);
     }
 
+    public function updateView()
+    {
+        if($_SERVER['REQUEST_METHOD'] == 'GET')
+        {
+            $id = $_GET['id_tarefa'];
+            $tarefa = $this->tarefa->getById($id);
+
+            $usuarios = $this->usuario->getAll();
+            $categorias = $this->categoria->getAll();
+
+            $data = [
+                'tarefa' => $tarefa,
+                'usuarios' => $usuarios,
+                'categorias' => $categorias
+            ];
+
+            RenderView::loadView('Tarefa', 'EditarTarefaView', $data);
+        }
+    }
+
 }
