@@ -100,6 +100,7 @@ class TarefaModel
     {
         $sql = 
             "SELECT
+                tf.id_tarefa,
                 tf.cd_tarefa,
                 tf.titulo_tarefa,
                 us.nm_usuario,
@@ -138,5 +139,18 @@ class TarefaModel
         $stmt->bindValue(":id_situacao", $this->getSituacao()->getIdSituacao());
         $stmt->bindValue(":ds_tarefa", $this->getDsTarefa());
         $stmt->execute();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @author Marcos Conde
+     * 11/02/2025
+     */
+    public function getById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tarefas WHERE id_tarefa = :id_tarefa");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
     }
 }

@@ -27,5 +27,7 @@ $routes = [
     //Rotas de Tarefa
     '/tarefas' => 'TarefaController@index',
     '/cadastro-tarefa' => 'TarefaController@createView',
-    '/create-tarefa' => 'TarefaController@create'
+    '/create-tarefa' => 'TarefaController@create',
+    '/editar-tarefa' => 'TarefaController@updateView',
+    '/update-tarefa' => 'TarefaController@update',
 ];

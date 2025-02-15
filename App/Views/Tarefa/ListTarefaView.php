@@ -1,6 +1,4 @@
-<?php include 'App/Views/navbar.php'; 
-    var_dump($tipoHorario);
-?>
+<?php include 'App/Views/navbar.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,14 +65,14 @@
                                                 </ul>
                                         </div>
                                     </form>
-                                    <form action="<?= BASE_URL ?>#" method="GET" style ="display: inline-flex">
-                                        <input type="hidden" name="id_usuario" value="">
+                                    <form action="<?= BASE_URL ?>/editar-tarefa" method="GET" style ="display: inline-flex">
+                                        <input type="hidden" name="id_tarefa" value="<?php echo htmlspecialchars($taf['id_tarefa'])?>">
                                         <button type="submit" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
                                     </form>
                                     <form action="<?= BASE_URL ?>#" method="GET" id="deleteForm" style ="display: inline-flex">
-                                        <input type="hidden" name="id_usuario" value="">
+                                        <input type="hidden" name="id_tarefa" value="<?php echo htmlspecialchars($taf['id_tarefa'])?>">
                                         <button type="submit" class="btn btn-danger deleteButton">
                                             <i class="bi bi-trash"></i>
                                         </button>
